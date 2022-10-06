@@ -5,9 +5,13 @@
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="#" (click)="navigate('recipes')"> Recipes </a></li>
         <li>
-          <a href="#" (click)="navigate('shopping-list')"> Shopping list </a>
+          <a (click)="navigate('recipes')" style="cursor: pointer">Recipes</a>
+        </li>
+        <li>
+          <a (click)="navigate('shopping-list')" style="cursor: pointer">
+            Shopping list
+          </a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
