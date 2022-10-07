@@ -8,6 +8,12 @@ import { Recipe } from 'src/app/models/recipe.model';
 })
 export class RecipeDetailComponent implements OnInit {
   @Input() recipe: Recipe;
+  selectedOption: Object;
+  recipeOptions: Object[] = [
+    { name: 'Add to shopping list' },
+    { name: 'Edit' },
+    { name: 'Delete' },
+  ];
 
   constructor() {}
   ngOnInit(): void {}

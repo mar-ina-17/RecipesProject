@@ -1,28 +1,17 @@
-<div class="row">
-  <div class="col-xs-12">
-    <img [src]="recipe.imagePath" alt="" class="img-responsive" />
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <h1>{{ recipe.name }}</h1>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <div class="btn-group">
-      <p-button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-        Options <span class="caret"></span>
-      </p-button>
-      <ul class="dropdown-menu">
-        <li><a href="#" class="dropdown-item">To Shopping List</a></li>
-        <li><a href="#" class="dropdown-item">Edit Recepe</a></li>
-        <li><a href="#" class="dropdown-item">Delete Recipe</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">{{ recipe.description }}</div>
-</div>
-<div class="row"><div class="col-xs-12">Ingredients</div></div>
+<p-card [header]="recipe.name" styleClass="p-card-shadow">
+  <ng-template pTemplate="header">
+    <img alt="Card" [src]="recipe.imagePath" />
+  </ng-template>
+  <p>
+    {{ recipe.description }}
+  </p>
+  <div class="row"><div class="col-xs-12">Ingredients</div></div>
+
+  <ng-template pTemplate="footer">
+    <p-dropdown
+      [options]="recipeOptions"
+      [(ngModel)]="selectedOption"
+      optionLabel="name"
+    ></p-dropdown>
+  </ng-template>
+</p-card>

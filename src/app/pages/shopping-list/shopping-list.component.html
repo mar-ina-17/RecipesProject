@@ -3,12 +3,13 @@
     <app-shopping-edit></app-shopping-edit>
     <hr />
     <ul class="list-group">
-      <a
+      <div
         class="list-group-item"
         style="cursor: pointer"
         *ngFor="let ingredient of ingredients"
-        >{{ ingredient.name }} ({{ ingredient.amount }})</a
       >
+        {{ ingredient.name }} ({{ ingredient.amount }})
+      </div>
     </ul>
   </div>
 </div>

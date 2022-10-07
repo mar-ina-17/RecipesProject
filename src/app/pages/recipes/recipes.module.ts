@@ -1,5 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+import { CardModule } from 'primeng/card';
+import { DropdownModule } from 'primeng/dropdown';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
@@ -16,6 +20,13 @@ import { RecipesComponent } from './recipes.component';
     RecipeListComponent,
   ],
 
-  imports: [CommonModule, RecipesRoutingModule, SharedModule],
+  imports: [
+    CommonModule,
+    RecipesRoutingModule,
+    SharedModule,
+    DropdownModule,
+    FormsModule,
+    CardModule,
+  ],
 })
 export class RecipesModule {}
