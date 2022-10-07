@@ -1,17 +1,33 @@
-<p-card [header]="recipe.name" styleClass="p-card-shadow">
+<p-card
+  styleClass="p-card-shadow"
+  [ngClass]="{
+    disabledInputsRecipe: recipe.isDisabled,
+    enabledInputRecipe: !recipe.isDisabled
+  }"
+>
   <ng-template pTemplate="header">
     <img alt="Card" [src]="recipe.imagePath" />
   </ng-template>
-  <p>
-    {{ recipe.description }}
-  </p>
-  <div class="row"><div class="col-xs-12">Ingredients</div></div>
-
+  <app-recipe-inputs [recipe]="recipe"></app-recipe-inputs>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="flex align-items-center">
+        <p-chip
+          [label]="ing"
+          *ngFor="let ing of recipe.ingredients"
+          styleClass="customRecipeIngredientChip"
+        ></p-chip>
+      </div>
+    </div>
+  </div>
   <ng-template pTemplate="footer">
     <p-dropdown
       [options]="recipeOptions"
       [(ngModel)]="selectedOption"
       optionLabel="name"
+      (onChange)="triggerOptionsAction($event)"
     ></p-dropdown>
+
+    <button pButton *ngIf="displaySave" class="pull-right">Save</button>
   </ng-template>
 </p-card>

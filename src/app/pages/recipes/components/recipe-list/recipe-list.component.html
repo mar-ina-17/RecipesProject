@@ -1,6 +1,11 @@
 <div class="row">
   <div class="col-xs-12">
-    <p-button pButton>New Recipe</p-button>
+    <p-button pButton (click)="newRecipe()">New Recipe</p-button>
+    <app-recipe-dialog
+      [(display)]="display"
+      (dialogOutput)="onClose($event)"
+      [recipe]="new_recipe"
+    ></app-recipe-dialog>
   </div>
 </div>
 <hr />

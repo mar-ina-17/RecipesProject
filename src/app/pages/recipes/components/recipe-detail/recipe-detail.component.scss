@@ -1,0 +1,24 @@
+#header {
+  margin-top: 5px;
+  font-size: x-large;
+  font-weight: 500;
+}
+:host ::ng-deep .p-chip.customRecipeIngredientChip {
+  background: rgba(136, 60, 174, 0.5);
+  color: white;
+  font-style: bold;
+  margin: 5px;
+}
+
+textarea {
+  width: 100%;
+}
+
+.disabledInputsRecipe {
+  input,
+  textarea {
+    font-size: medium;
+    background-color: transparent;
+    border: none;
+  }
+}

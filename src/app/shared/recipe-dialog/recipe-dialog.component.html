@@ -1,0 +1,7 @@
+<p-dialog
+  header="Add a new recipe"
+  [(visible)]="display"
+  (onHide)="closeDialogEmit()"
+>
+  <app-recipe-inputs [recipe]="recipe"></app-recipe-inputs>
+</p-dialog>

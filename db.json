@@ -1,0 +1,16 @@
+{
+    "ingredients": [
+      { "id": 1,  "name":"Potatoes"},
+      { "id": 2,   "name":"Tomatoes"},
+      { "id": 3,  "name":"Cheese"},
+      { "id": 4,   "name":"Bread"},
+      { "id": 5,   "name":"Fish"},
+      { "id": 6,  "name":"Milk"}
+    ],
+    "recipes": [
+      {"id": 1, "name": "Recipe 1", "ingredients":["Tomatoes", "Potatoes", "Bread"], "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec ultrices tincidunt arcu non sodales neque. Congue mauris rhoncus aenean vel elit. Bibendum ut tristique et egestas quis ipsum. Dictum varius duis at consectetur lorem donec massa sapien. Tellus mauris a diam maecenas sed enim ut sem viverra. "},
+      {"id": 2, "name": "Recipe 2", "ingredients":["Milk", "Cheese", "Bread"], "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec ultrices tincidunt arcu non sodales neque. Congue mauris rhoncus aenean vel elit. Bibendum ut tristique et egestas quis ipsum. Dictum varius duis at consectetur lorem donec massa sapien. Tellus mauris a diam maecenas sed enim ut sem viverra. "},
+      {"id": 3, "name": "Recipe 3", "ingredients":["Fish", "Potatoes", "Bread"], "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec ultrices tincidunt arcu non sodales neque. Congue mauris rhoncus aenean vel elit. Bibendum ut tristique et egestas quis ipsum. Dictum varius duis at consectetur lorem donec massa sapien. Tellus mauris a diam maecenas sed enim ut sem viverra. "}
+
+    ]
+  }

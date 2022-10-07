@@ -2,7 +2,7 @@
   <div class="pull-left">
     <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
     <p class="list-group-item-text">
-      {{ recipe.description }}
+      {{ recipe.description | truncate: [40, "..."] }}
     </p>
   </div>
   <span class="pull-right">

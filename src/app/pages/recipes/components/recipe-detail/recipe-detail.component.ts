@@ -1,6 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe.model';
 
+export interface Option {
+  name: string;
+}
+
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',
@@ -8,8 +12,10 @@ import { Recipe } from 'src/app/models/recipe.model';
 })
 export class RecipeDetailComponent implements OnInit {
   @Input() recipe: Recipe;
-  selectedOption: Object;
-  recipeOptions: Object[] = [
+  selectedOption: Option | undefined;
+  displaySave: boolean = false;
+
+  recipeOptions: Option[] = [
     { name: 'Add to shopping list' },
     { name: 'Edit' },
     { name: 'Delete' },
@@ -17,4 +23,14 @@ export class RecipeDetailComponent implements OnInit {
 
   constructor() {}
   ngOnInit(): void {}
+
+  triggerOptionsAction(e) {
+    if (this.selectedOption.name === 'Edit') {
+      this.displaySave = true;
+      this.recipe.isDisabled = false;
+    } else {
+      this.displaySave = false;
+      this.recipe.isDisabled = true;
+    }
+  }
 }
