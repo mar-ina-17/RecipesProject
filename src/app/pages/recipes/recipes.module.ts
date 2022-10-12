@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { ChipModule } from 'primeng/chip';
 import { DropdownModule } from 'primeng/dropdown';
+import { MessageModule } from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TruncatePipe } from '../../pipes/string-truncate.pipe';
@@ -31,6 +33,8 @@ import { RecipesComponent } from './recipes.component';
     FormsModule,
     CardModule,
     ChipModule,
+    MessageModule,
+    MessagesModule,
   ],
 })
 export class RecipesModule {}

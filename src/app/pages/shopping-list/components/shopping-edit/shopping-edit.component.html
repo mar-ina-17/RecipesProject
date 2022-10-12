@@ -4,20 +4,36 @@
       <div class="row">
         <div class="col-sm-5 form-group">
           <label for="name">Name</label>
-          <input type="text" id="name" class="form-control" />
+          <input
+            type="text"
+            id="name"
+            class="form-control"
+            [(ngModel)]="name"
+            name="ingName"
+            required
+          />
         </div>
         <div class="col-sm-2 form-group">
           <label for="amount">Amount</label>
-          <input type="number" id="amount" class="form-control" min="1" />
+          <input
+            type="number"
+            id="amount"
+            class="form-control"
+            min="1"
+            [(ngModel)]="amount"
+            name="ingAmount"
+            required
+          />
         </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <p-button type="submit">Add</p-button>
-          <p-button type="p-button">Delete</p-button>
-          <p-button>Clear</p-button>
+        <div class="col-sm-2 form-group">
+          <i
+            class="pi pi-cart-plus"
+            id="action-icons"
+            (click)="addIngredient()"
+          ></i>
         </div>
       </div>
     </form>
+    <p-toast position="top-right" key="warn-key"></p-toast>
   </div>
 </div>

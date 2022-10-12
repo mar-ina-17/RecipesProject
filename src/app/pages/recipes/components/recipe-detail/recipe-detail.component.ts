@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Recipe } from 'src/app/models/recipe.model';
-
+import { Recipe } from './../../../../store/models/recipe.model';
 export interface Option {
   name: string;
 }

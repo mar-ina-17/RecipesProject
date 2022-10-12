@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Recipe } from 'src/app/models/recipe.model';
+import { Recipe } from 'src/app/store/models/recipe.model';
 
 @Component({
   selector: 'app-recipe-dialog',

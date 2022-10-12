@@ -5,6 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
+import { ShoppingListService } from './store/services/shopping-list.services';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -14,7 +15,7 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
     StoreModule.forRoot({}, {}),
   ],
-  providers: [],
+  providers: [ShoppingListService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

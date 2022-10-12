@@ -5,10 +5,25 @@
     enabledInputRecipe: !recipe.isDisabled
   }"
 >
+  <!---->
   <ng-template pTemplate="header">
     <img alt="Card" [src]="recipe.imagePath" />
   </ng-template>
-  <app-recipe-inputs [recipe]="recipe"></app-recipe-inputs>
+  <div class="row">
+    <div class="col-xs-12">
+      <input
+        type="text"
+        [value]="recipe.name"
+        [disabled]="recipe.isDisabled"
+        id="header"
+      />
+    </div>
+  </div>
+  <textarea
+    [value]="recipe.description"
+    [disabled]="recipe.isDisabled"
+    rows="7"
+  ></textarea>
   <div class="row">
     <div class="col-xs-12">
       <div class="flex align-items-center">

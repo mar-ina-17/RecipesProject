@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-xs-10">
+  <div class="col-xs-6">
     <app-shopping-edit></app-shopping-edit>
     <hr />
     <ul class="list-group">
@@ -8,8 +8,13 @@
         style="cursor: pointer"
         *ngFor="let ingredient of ingredients"
       >
-        {{ ingredient.name }} ({{ ingredient.amount }})
+        <b>{{ ingredient.name }}</b> ({{ ingredient.amount }})<i
+          class="pi pi-trash pull-right"
+          style="font-size: 15px; margin-top: 5px"
+          (click)="deleteIngredient(ingredient.name)"
+        ></i>
       </div>
+      <p-confirmDialog header="Are you sure?"></p-confirmDialog>
     </ul>
   </div>
 </div>

@@ -1,17 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { MenuItem } from 'primeng/api';
+export interface Data {
+  name: string;
+  code: string;
+}
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  dataOptions: Data[] = [
+    { name: 'Save Data', code: 'NY' },
+    { name: 'Fetch Data', code: 'RM' },
+  ];
+  selectedOption: Data;
+
+  items: MenuItem[] = [
+    {
+      label: 'Recipes',
+      icon: 'pi pi-fw pi-file',
+      command: (click) => {
+        this.router.navigate(['recipes']);
+      },
+    },
+    {
+      label: 'Shopping List',
+      icon: 'pi pi-fw pi-pencil',
+      command: (click) => {
+        this.router.navigate(['shopping-list']);
+      },
+    },
+  ];
+
   constructor(private router: Router) {}
   ngOnInit(): void {}
-
-  navigate = (fe: string) => {
-    if (fe === 'recipes') this.router.navigate(['recipes']);
-    if (fe === 'shopping-list') this.router.navigate(['shopping-list']);
-  };
 }
