@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Recipe } from 'src/app/store/models/recipe.model';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RecipeService } from 'src/app/store/services/recipe.service';
+import { Recipe } from '../../../../store/models/shared.models';
 
 @Component({
   selector: 'app-recipe-list',
@@ -8,17 +8,21 @@ import { RecipeService } from 'src/app/store/services/recipe.service';
   styleUrls: ['./recipe-list.component.scss'],
 })
 export class RecipeListComponent implements OnInit {
-  display: boolean = false;
-  recipes: Recipe[] = [];
+  @Output() onSelectedOutput = new EventEmitter<Recipe>();
+  @Input() recipes: Recipe[] = [];
+  displayDialog: boolean = false;
+  newRecipe: Recipe = new Recipe();
+
   constructor(private recipeService: RecipeService) {}
-  ngOnInit(): void {
-    this.recipes = this.recipeService.getRecipes();
-  }
+  ngOnInit(): void {}
 
   onSelected(recipe: Recipe) {
-    this.recipeService.selectedRecipe.emit(recipe);
+    this.onSelectedOutput.emit(recipe);
   }
-  onClose = (e: Event) => {
-    this.display = false;
-  };
+
+  onDialogClose() {
+    this.newRecipe = new Recipe();
+    this.displayDialog = false;
+    this.recipes = this.recipeService.getRecipes();
+  }
 }

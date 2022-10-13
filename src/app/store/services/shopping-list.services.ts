@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Ingredient } from './../models/ingredient.model';
+import { Ingredient } from './../models/shared.models';
 import * as helpers from './helper.functions';
 @Injectable({
   providedIn: 'root',
@@ -10,10 +10,12 @@ export class ShoppingListService {
     new Ingredient('Tomatoe', 4),
   ];
 
-  getIngredientsService = (): Ingredient[] => {
+  getIngredientsService(): Ingredient[] {
     return this.ingredients;
-  };
-
+  }
+  addIngredients(ingredients: Ingredient[]) {
+    this.ingredients = this.ingredients.concat(ingredients);
+  }
   addIngredientService = (ingredient: Ingredient) => {
     if (ingredient && !helpers.exists(ingredient, this.ingredients)) {
       this.ingredients.push(ingredient);

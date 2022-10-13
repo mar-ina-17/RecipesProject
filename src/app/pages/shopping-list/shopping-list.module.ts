@@ -4,8 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MenubarModule } from 'primeng/menubar';
-import { ToastModule } from 'primeng/toast';
-
+import { SharedModule } from 'src/app/shared/shared.module';
 import { ShoppingEditComponent } from './components/shopping-edit/shopping-edit.component';
 import { ShoppingListRoutingModule } from './shopping-list-routing.module';
 import { ShoppingListComponent } from './shopping-list.component';
@@ -19,7 +18,7 @@ import { ShoppingListComponent } from './shopping-list.component';
     FormsModule,
     MenubarModule,
     ConfirmDialogModule,
-    ToastModule,
+    SharedModule,
   ],
 })
 export class ShoppingListModule {}

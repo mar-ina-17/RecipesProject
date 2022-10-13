@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
-import { Ingredient } from 'src/app/store/models/ingredient.model';
+import { Ingredient } from '../../store/models/shared.models';
 import { ShoppingListService } from './../../store/services/shopping-list.services';
 
 @Component({
@@ -21,12 +21,12 @@ export class ShoppingListComponent implements OnInit {
     this.ingredients = this.list.getIngredientsService();
   }
 
-  deleteIngredient = (name: string): void => {
+  deleteIngredient(name: string): void {
     this.confirmService.confirm({
-      message: 'Are you sure that you want todelete this ingredient?',
+      message: 'Are you sure that you want to delete this ingredient?',
       accept: () => {
         this.list.deleteIngredientService(name);
       },
     });
-  };
+  }
 }

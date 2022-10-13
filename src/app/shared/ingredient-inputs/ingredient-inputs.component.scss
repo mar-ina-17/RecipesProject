@@ -1,0 +1,14 @@
+#action-icons {
+  font-size: 25px;
+  margin-right: 12px;
+  cursor: pointer;
+}
+@media only screen and (min-width: 768px) {
+  #action-icons {
+    margin-top: 45%;
+    margin-bottom: 55%;
+  }
+}
+#action-icons:hover {
+  color: #883cae;
+}

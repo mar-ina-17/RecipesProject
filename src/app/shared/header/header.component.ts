@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
-export interface Data {
-  name: string;
-  code: string;
-}
+import { Data } from 'src/app/store/models/shared.models';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',

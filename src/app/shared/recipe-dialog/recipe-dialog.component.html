@@ -1,6 +1,79 @@
 <p-dialog
+  modal="modal"
   header="Add a new recipe"
   [(visible)]="display"
   (onHide)="closeDialogEmit()"
+  width="100%"
+  styleClass="disable-scroll"
 >
+  <ng-template pTemplate="header">Modify recipe</ng-template>
+
+  <div class="grid p-fluid form-group">
+    <div class="col-12 md:col-4">
+      <label for="url">Image URL: </label><br />
+
+      <div class="p-inputgroup">
+        <input
+          type="text"
+          [(ngModel)]="recipe.imagePath"
+          pInputText
+          placeholder="ex: https://www...."
+          class="form-control"
+        />
+      </div>
+    </div>
+    <br />
+
+    <div class="col-12 md:col-4">
+      <label for="name">Name: </label><br />
+
+      <div class="p-inputgroup">
+        <input
+          type="text"
+          [(ngModel)]="recipe.name"
+          pInputText
+          placeholder="ex: Spaghetti Bolognese"
+          class="form-control"
+        />
+      </div>
+    </div>
+    <br />
+
+    <div class="col-12 md:col-4">
+      <label for="description">Description: </label>
+
+      <div class="p-inputgroup">
+        <textarea
+          type="text"
+          [(ngModel)]="recipe.description"
+          pInputText
+          placeholder="ex: Fill one pot with water and put salt in it. Then add the spaghetti..."
+          class="form-control"
+          rows="8 "
+          cols="70"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="col-12 md:col-4">
+      <div class="p-inputgroup">
+        <app-ingredient-inputs
+          (addIngredientOutput)="addIngredientToRecipe($event)"
+        ></app-ingredient-inputs>
+      </div>
+      <div class="flex align-items-center">
+        <p-chip
+          *ngFor="let item of recipe.ingredients; let index"
+          [removable]="true"
+          styleClass="p-chips"
+          (onRemove)="deleteIngredient(item)"
+          ><b>{{ item.name }}</b> ({{ item.amount }})</p-chip
+        >
+      </div>
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <p-button (click)="saveRecipeChanges()">Save</p-button>
+  </ng-template>
 </p-dialog>

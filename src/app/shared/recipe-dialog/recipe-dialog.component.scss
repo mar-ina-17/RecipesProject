@@ -1,0 +1,10 @@
+:host ::ng-deep .p-chip.p-component {
+  background-color: rgb(136, 60, 174, 0.5);
+  height: 3rem;
+  margin-right: 3px;
+  color: #883cae;
+}
+
+::ng-deep .disable-scroll .ui-dialog-content {
+  overflow: hidden !important;
+}
