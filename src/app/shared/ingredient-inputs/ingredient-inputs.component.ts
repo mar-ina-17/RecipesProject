@@ -33,8 +33,8 @@ export class IngredientInputsComponent implements OnInit {
         this.name && this.amount
           ? new Ingredient(this.name, this.amount)
           : null;
-      this.clearInputs();
       this.addIngredientOutput.emit(newIngredient);
+      this.clearInputs();
     }
   }
 

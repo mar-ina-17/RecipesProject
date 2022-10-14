@@ -11,7 +11,7 @@
         <b>{{ ingredient.name }}</b> ({{ ingredient.amount }})<i
           class="pi pi-trash pull-right"
           style="font-size: 15px; margin-top: 5px"
-          (click)="deleteIngredient(ingredient.name)"
+          (click)="deleteIngredient(ingredient.id)"
         ></i>
       </div>
       <p-confirmDialog header="Are you sure?"></p-confirmDialog>

@@ -31,11 +31,16 @@ export class RecipeDialogComponent implements OnInit {
   }
 
   addIngredientToRecipe(ingredient: Ingredient) {
-    if (!HelperFunctions.exists(ingredient, this.recipe.ingredients))
+    if (
+      !HelperFunctions.exists(this.recipe.ingredients, {
+        name: ingredient.name,
+      })
+    )
       this.recipe.ingredients.push(ingredient);
   }
 
   saveRecipeChanges() {
+    console.log('this.recipe: ', this.recipe);
     this.recipeService.addRecipe(this.recipe);
     this.display = false;
   }

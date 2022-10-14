@@ -14,17 +14,25 @@ export class ShoppingListService {
     return this.ingredients;
   }
   addIngredients(ingredients: Ingredient[]) {
-    this.ingredients = this.ingredients.concat(ingredients);
+    ingredients.forEach((ing) => {
+      this.addIngredientService(ing);
+    });
   }
   addIngredientService = (ingredient: Ingredient) => {
-    if (ingredient && !helpers.exists(ingredient, this.ingredients)) {
+    console.log(helpers.exists(this.ingredients, { name: ingredient.name }));
+    if (!helpers.exists(this.ingredients, { name: ingredient.name })) {
       this.ingredients.push(ingredient);
-    } else console.log('invalid ingredient argument');
+    } else {
+      const i = helpers.existsOnIndex(this.ingredients, {
+        name: ingredient.name,
+      });
+      this.ingredients[i].amount += ingredient.amount;
+    }
   };
 
-  deleteIngredientService = (name: string) => {
-    const index = helpers.existsOnIndex(name, this.ingredients);
-    if (name && index != -1) {
+  deleteIngredientService = (id: number) => {
+    const index = helpers.existsOnIndex(this.ingredients, { id: id });
+    if (id && index != -1) {
       this.ingredients.splice(index, 1);
     } else console.log('invalid ingredient argument');
   };

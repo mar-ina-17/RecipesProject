@@ -28,7 +28,6 @@ export class RecipeDetailComponent implements OnInit {
   ngOnInit(): void {}
 
   triggerOptionsAction() {
-    console.log(this.recipeOptions);
     switch (this.selectedOption.index) {
       case 1: {
         this.addToShoppingListOutput.emit(this.recipe.ingredients);

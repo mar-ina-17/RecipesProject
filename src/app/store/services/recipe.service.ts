@@ -41,8 +41,14 @@ export class RecipeService {
     ),
   ];
   private getIndex(recipe: Recipe): number {
-    if (HelperFunctions.exists(recipe, this.recipes)) {
-      const index = HelperFunctions.existsOnIndex(recipe.name, this.recipes);
+    if (
+      HelperFunctions.exists(this.recipes, {
+        id: recipe.id,
+      })
+    ) {
+      const index = HelperFunctions.existsOnIndex(this.recipes, {
+        id: recipe.id,
+      });
       return index;
     }
   }
@@ -60,7 +66,9 @@ export class RecipeService {
 
   addRecipe(recipe: Recipe) {
     const i = this.getIndex(recipe);
-    if (i >= 0) {
+    console.log('recipe mod: ', recipe);
+    console.log('curr rec: ', this.recipes[i]);
+    if (i >= 0 && i < this.recipes.length) {
       this.recipes[i] = recipe;
     } else {
       this.recipes.push(recipe);

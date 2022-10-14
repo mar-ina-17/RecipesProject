@@ -1,15 +1,12 @@
+import * as HelperFunctions from '../services/helper.functions';
 import { Ingredient } from './shared.models';
 export class Recipe {
-  private generateId(): number {
-    return Math.floor(Math.random() * (9999 - 1000) + 1000);
-  }
-
-  public id: number = this.generateId();
+  public id: number = HelperFunctions.generateId(1000, 9999);
 
   constructor(
     public name: string = '',
     public description: string = '',
     public imagePath: string = '',
-    public ingredients: Array<Ingredient> = []
+    public ingredients: Ingredient[] = []
   ) {}
 }

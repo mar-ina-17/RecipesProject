@@ -21,11 +21,11 @@ export class ShoppingListComponent implements OnInit {
     this.ingredients = this.list.getIngredientsService();
   }
 
-  deleteIngredient(name: string): void {
+  deleteIngredient(id): void {
     this.confirmService.confirm({
       message: 'Are you sure that you want to delete this ingredient?',
       accept: () => {
-        this.list.deleteIngredientService(name);
+        this.list.deleteIngredientService(id);
       },
     });
   }
