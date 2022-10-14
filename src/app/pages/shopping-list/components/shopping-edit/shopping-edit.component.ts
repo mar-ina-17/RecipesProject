@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ShoppingListService } from 'src/app/store/services/shopping-list.services';
-import { Ingredient } from './../../../../store/models/shared.models';
+import { ShoppingListService } from 'src/app/pages/shopping-list/shopping-list.services';
+import { Ingredient } from '../../../../shared/models/shared.models';
 
 export interface Action {
   name: string;

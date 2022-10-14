@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { Ingredient, Recipe } from '../models/shared.models';
-import * as HelperFunctions from './helper.functions';
+import * as HelperFunctions from '../../shared/helper.functions';
+import { Ingredient, Recipe } from '../../shared/models/shared.models';
 
 @Injectable({
   providedIn: 'root',

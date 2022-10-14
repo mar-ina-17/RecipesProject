@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
-import { Ingredient } from '../../store/models/shared.models';
-import { ShoppingListService } from './../../store/services/shopping-list.services';
+import { Ingredient } from '../../shared/models/shared.models';
+import { ShoppingListService } from './shopping-list.services';
 
 @Component({
   selector: 'app-shopping-list',

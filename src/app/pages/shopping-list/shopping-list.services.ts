@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Ingredient } from './../models/shared.models';
-import * as helpers from './helper.functions';
+import * as helpers from '../../shared/helper.functions';
+import { Ingredient } from '../../shared/models/shared.models';
+
 @Injectable({
   providedIn: 'root',
 })

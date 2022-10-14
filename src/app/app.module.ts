@@ -4,8 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ShoppingListService } from './pages/shopping-list/shopping-list.services';
 import { SharedModule } from './shared/shared.module';
-import { ShoppingListService } from './store/services/shopping-list.services';
 @NgModule({
   declarations: [AppComponent],
   imports: [

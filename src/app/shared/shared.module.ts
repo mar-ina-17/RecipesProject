@@ -8,9 +8,9 @@ import { DropdownModule } from 'primeng/dropdown';
 import { MenubarModule } from 'primeng/menubar';
 import { ToastModule } from 'primeng/toast';
 
+import { RecipeDialogComponent } from '../pages/recipes/components/recipe-dialog/recipe-dialog.component';
 import { HeaderComponent } from './header/header.component';
 import { IngredientInputsComponent } from './ingredient-inputs/ingredient-inputs.component';
-import { RecipeDialogComponent } from './recipe-dialog/recipe-dialog.component';
 @NgModule({
   declarations: [
     HeaderComponent,

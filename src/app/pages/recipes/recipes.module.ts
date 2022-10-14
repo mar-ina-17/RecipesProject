@@ -9,7 +9,7 @@ import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 
 import { SharedModule } from 'src/app/shared/shared.module';
-import { TruncatePipe } from '../../pipes/string-truncate.pipe';
+import { TruncatePipe } from '../../shared/pipes/string-truncate.pipe';
 import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
 import { RecipeItemComponent } from './components/recipe-list/recipe-item/recipe-item.component';
 import { RecipeListComponent } from './components/recipe-list/recipe-list.component';

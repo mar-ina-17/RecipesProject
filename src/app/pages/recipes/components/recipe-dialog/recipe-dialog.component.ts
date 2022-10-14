@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Recipe } from 'src/app/store/models/recipe.model';
-import { RecipeService } from 'src/app/store/services/recipe.service';
-import * as HelperFunctions from '../../store/services/helper.functions';
-import { Ingredient } from './../../store/models/ingredient.model';
+import { RecipeService } from 'src/app/pages/recipes/recipe.service';
+import { Recipe } from 'src/app/shared/models/recipe.model';
+import * as HelperFunctions from '../../../../shared/helper.functions';
+import { Ingredient } from '../../../../shared/models/ingredient.model';
 @Component({
   selector: 'app-recipe-dialog',
   templateUrl: './recipe-dialog.component.html',
@@ -19,9 +19,9 @@ export class RecipeDialogComponent implements OnInit {
   closeDialogEmit() {
     this.dialogOutput.emit();
   }
-  ngOnDestroy() {
+  /*ngOnDestroy() {
     this.dialogOutput.unsubscribe();
-  }
+  }*/
 
   deleteIngredient(ingredient: Ingredient) {
     this.recipe.ingredients.splice(

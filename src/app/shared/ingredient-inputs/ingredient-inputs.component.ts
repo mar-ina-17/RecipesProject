@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { Ingredient } from 'src/app/store/models/shared.models';
+import { Ingredient } from 'src/app/shared/models/shared.models';
 
 @Component({
   selector: 'app-ingredient-inputs',

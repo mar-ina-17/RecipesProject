@@ -1,4 +1,4 @@
-import * as HelperFunctions from '../services/helper.functions';
+import * as HelperFunctions from '../helper.functions';
 
 export class Ingredient {
   public id: number = HelperFunctions.generateId(100, 999);

@@ -1,4 +1,4 @@
-import * as HelperFunctions from '../services/helper.functions';
+import * as HelperFunctions from '../helper.functions';
 import { Ingredient } from './shared.models';
 export class Recipe {
   public id: number = HelperFunctions.generateId(1000, 9999);
