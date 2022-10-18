@@ -1,7 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { RecipeService } from 'src/app/pages/recipes/recipe.service';
-import { Ingredient } from 'src/app/shared/models/shared.models';
-import { Option, Recipe } from '../../../../shared/models/shared.models';
+import { Component, OnInit } from '@angular/core';
+import { Option } from '../../../../shared/models/shared.models';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -9,11 +7,6 @@ import { Option, Recipe } from '../../../../shared/models/shared.models';
   styleUrls: ['./recipe-detail.component.scss'],
 })
 export class RecipeDetailComponent implements OnInit {
-  @Input() recipe: Recipe = new Recipe();
-  @Output() deleteRecipeOutput = new EventEmitter<Recipe>();
-  @Output() addToShoppingListOutput = new EventEmitter<Ingredient[]>();
-  recipeCopy: Recipe = new Recipe();
-
   selectedOption: Option | undefined;
   displayDialog: boolean = false;
 
@@ -24,22 +17,20 @@ export class RecipeDetailComponent implements OnInit {
     { name: 'Delete', index: 3 },
   ];
 
-  constructor(private recipeService: RecipeService) {}
+  constructor() {}
   ngOnInit(): void {}
 
   triggerOptionsAction() {
     switch (this.selectedOption.index) {
       case 1: {
-        this.addToShoppingListOutput.emit(this.recipe.ingredients);
         break;
       }
       case 2: {
         this.displayDialog = true;
-        this.recipeCopy = JSON.parse(JSON.stringify(this.recipe));
+        // this.recipeCopy = JSON.parse(JSON.stringify(this.recipe));
         break;
       }
       case 3: {
-        this.deleteRecipeOutput.emit(this.recipe);
         break;
       }
     }
@@ -48,6 +39,5 @@ export class RecipeDetailComponent implements OnInit {
   onDialogClose(state: boolean) {
     this.selectedOption = this.recipeOptions[0];
     this.displayDialog = state;
-    this.recipe = this.recipeService.getRecipe(this.recipe);
   }
 }

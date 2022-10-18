@@ -1,12 +1,8 @@
-import * as HelperFunctions from '../helper.functions';
 import { Ingredient } from './shared.models';
-export class Recipe {
-  public id: number = HelperFunctions.generateId(1000, 9999);
-
-  constructor(
-    public name: string = '',
-    public description: string = '',
-    public imagePath: string = '',
-    public ingredients: Ingredient[] = []
-  ) {}
+export interface Recipe {
+  id: number;
+  name: string;
+  description: string;
+  imagePath: string;
+  ingredients: Ingredient[];
 }

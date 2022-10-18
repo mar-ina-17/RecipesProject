@@ -4,23 +4,14 @@
   </ng-template>
   <div class="row">
     <div class="col-xs-12">
-      <input type="text" [value]="recipe.name" id="header" disabled />
+      <input type="text" [value]="" id="header" disabled />
     </div>
   </div>
-  <textarea
-    [value]="recipe.description"
-    rows="7 "
-    id="descr-textarea"
-    disabled
-  ></textarea>
+  <textarea [value]="" rows="7 " id="descr-textarea" disabled></textarea>
   <div class="row">
     <div class="col-xs-12">
       <div class="flex align-items-center">
-        <p-chip
-          *ngFor="let ing of recipe.ingredients"
-          styleClass="customRecipeIngredientChip"
-          ><b>{{ ing.name }} ({{ ing.amount }})</b></p-chip
-        >
+        <p-chip styleClass="customRecipeIngredientChip"><b></b></p-chip>
       </div>
     </div>
   </div>
@@ -33,8 +24,7 @@
     ></p-dropdown>
   </ng-template>
 </p-card>
-<app-recipe-dialog
+<!--<app-recipe-dialog
   [display]="displayDialog"
   (dialogOutput)="onDialogClose($event)"
-  [recipe]="recipeCopy"
-></app-recipe-dialog>
+></app-recipe-dialog>-->

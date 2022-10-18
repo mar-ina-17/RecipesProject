@@ -21,7 +21,7 @@ export class IngredientInputsComponent implements OnInit {
   }
 
   addIngredient(event: Event) {
-    if (!this.name || !this.amount) {
+    /* if (!this.name || !this.amount) {
       this.messageService.add({
         key: 'warn-key',
         severity: 'error',
@@ -35,7 +35,7 @@ export class IngredientInputsComponent implements OnInit {
           : null;
       this.addIngredientOutput.emit(newIngredient);
       this.clearInputs();
-    }
+    }*/
   }
 
   ngOnInit(): void {}

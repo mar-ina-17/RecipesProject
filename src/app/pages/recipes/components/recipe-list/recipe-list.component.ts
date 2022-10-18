@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { RecipeService } from 'src/app/pages/recipes/recipe.service';
 import { Recipe } from '../../../../shared/models/shared.models';
 
 @Component({
@@ -11,9 +10,9 @@ export class RecipeListComponent implements OnInit {
   @Output() onSelectedOutput = new EventEmitter<Recipe>();
   @Input() recipes: Recipe[] = [];
   displayDialog: boolean = false;
-  newRecipe: Recipe = new Recipe();
+  newRecipe: Recipe;
 
-  constructor(private recipeService: RecipeService) {}
+  constructor() {}
   ngOnInit(): void {}
 
   onSelected(recipe: Recipe) {
@@ -21,8 +20,6 @@ export class RecipeListComponent implements OnInit {
   }
 
   onDialogClose() {
-    this.newRecipe = new Recipe();
     this.displayDialog = false;
-    this.recipes = this.recipeService.getRecipes();
   }
 }
