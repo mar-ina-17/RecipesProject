@@ -10,4 +10,16 @@ export class RecipesService {
   getRecipes() {
     return this.http.get(this.url);
   }
+
+  updateRecipe(recipe) {
+    return this.http.put(this.url + '/' + recipe.id + '/', recipe);
+  }
+
+  addRecipe(recipe) {
+    return this.http.post(this.url, recipe);
+  }
+
+  deleteRecipe(id) {
+    return this.http.delete(this.url + '/' + id + '/', id);
+  }
 }

@@ -22,8 +22,49 @@ export class RecipesEffects {
         (data: Recipe[]) =>
           recipeActions.fetchRecipesSuccess({ recipes: data }),
         catchError((error: string | null) =>
-          of(recipeActions.fetchRecipesFailure({ error: error }))
+          of(recipeActions.fetchRecipesFailure())
         )
+      )
+    );
+  });
+
+  public updateRecipe$: Observable<any> = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(recipeActions.updateRecipe),
+      switchMap(({ recipe }) =>
+        this.recipesService
+          .updateRecipe(recipe)
+          .pipe(
+            map((data: Recipe) =>
+              recipeActions.updateRecipeSuccess({ id: recipe.id, recipe: data })
+            )
+          )
+      )
+    );
+  });
+
+  public addRecipe$: Observable<any> = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(recipeActions.addRecipe),
+      switchMap(({ recipe }) =>
+        this.recipesService
+          .addRecipe(recipe)
+          .pipe(
+            map((data: Recipe) =>
+              recipeActions.addRecipeSuccess({ recipe: data })
+            )
+          )
+      )
+    );
+  });
+
+  public deleteRecipe$: Observable<any> = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(recipeActions.deleteRecipe),
+      switchMap(({ id }) =>
+        this.recipesService
+          .deleteRecipe(id)
+          .pipe(map(() => recipeActions.deleteRecipeSuccess({ id: id })))
       )
     );
   });

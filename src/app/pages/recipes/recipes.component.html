@@ -1,16 +1,15 @@
 <div class="row">
-  <!--  <div class="col-md-5">
-   <app-recipe-list
+  <div class="col-md-5">
+    <app-recipe-list
       [recipes]="recipes"
       (onSelectedOutput)="assignSelectedRecipe($event)"
+      (onNewOutput)="assignNewRecipe()"
     >
     </app-recipe-list>
   </div>
   <div class="col-md-7">
     <app-recipe-detail
       *ngIf="selectedRecipe; else msgTxt"
-      [recipe]="selectedRecipe"
-      [recipes]="recipes"
       (deleteRecipeOutput)="deleteRecipe($event)"
       (addToShoppingListOutput)="addIngredientsToShoppingList($event)"
     ></app-recipe-detail>
@@ -21,5 +20,6 @@
         </ng-template>
       </p-messages>
     </ng-template>
-  </div>-->
+  </div>
+  <!--  -->
 </div>

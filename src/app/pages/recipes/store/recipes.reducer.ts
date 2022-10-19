@@ -9,20 +9,25 @@ const recipes_reducer = createReducer(
     recipes: recipes,
     isReady: true,
   })),
+  on(RecipesActions.fetchRecipesFailure, (state) => ({
+    ...state,
+    recipes: [],
+    isReady: false,
+  })),
 
-  on(RecipesActions.addRecipe, (state, action) => ({
+  on(RecipesActions.addRecipeSuccess, (state, action) => ({
     ...state,
     recipes: state.recipes.concat(action.recipe),
   })),
 
-  on(RecipesActions.deleteRecipe, (state, action) => ({
+  on(RecipesActions.deleteRecipeSuccess, (state, action) => ({
     ...state,
     recipes: state.recipes.filter((recipe) => {
       recipe.id !== action.id;
     }),
   })),
 
-  on(RecipesActions.updateRecipe, (state, action) => ({
+  on(RecipesActions.updateRecipeSuccess, (state, action) => ({
     ...state,
     recipes: state.recipes.map((recipe) => {
       return recipe.id === action.id ? { ...action.recipe } : recipe;

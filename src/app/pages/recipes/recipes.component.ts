@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Recipe } from 'src/app/shared/models/recipe.model';
 
 import { RecipesFacade } from './store/recipe.facade';
@@ -8,12 +9,39 @@ import { RecipesFacade } from './store/recipe.facade';
   styleUrls: ['./recipes.component.scss'],
 })
 export class RecipesComponent implements OnInit {
-  selectedRecipe: Recipe;
+  selectedRecipe: boolean;
   recipes: Recipe[];
+
+  private recipeSub: Subscription = Subscription.EMPTY;
 
   constructor(private facade: RecipesFacade) {}
 
   ngOnInit(): void {
-    console.log(this.facade.loadRecipes());
+    this.facade.loadRecipes();
+    this.recipeSub = this.facade.recipes$.subscribe((data: Recipe[]) => {
+      if (data && data.length) {
+        this.recipes = data;
+        console.log('recipes: ', this.recipes);
+      } else {
+        this.recipes = [];
+      }
+    });
+  }
+  ngOnDestroy() {
+    this.recipeSub.unsubscribe();
+  }
+  deleteRecipe(e) {
+    console.log('lasjdlajs', e);
+    this.facade.deleteRecipe(e.id);
+    this.selectedRecipe = false;
+    this.facade.loadRecipes();
+  }
+  assignNewRecipe() {
+    this.facade.selectedRecipe = new Recipe();
+    this.selectedRecipe = false;
+  }
+  assignSelectedRecipe(e) {
+    this.facade.selectRecipe(e);
+    this.selectedRecipe = true;
   }
 }

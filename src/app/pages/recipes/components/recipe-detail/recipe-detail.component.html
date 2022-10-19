@@ -1,17 +1,36 @@
 <p-card styleClass="p-card-shadow" class="disabledInputsRecipe">
   <ng-template pTemplate="header">
-    <img alt="Card" [src]="recipe.imagePath" />
+    <img
+      alt="Card"
+      [src]="facade.selectedRecipe.imagePath"
+      *ngIf="facade.selectedRecipe.imagePath"
+    />
   </ng-template>
   <div class="row">
     <div class="col-xs-12">
-      <input type="text" [value]="" id="header" disabled />
+      <input
+        type="text"
+        [value]="facade.selectedRecipe.name"
+        id="header"
+        disabled
+      />
     </div>
   </div>
-  <textarea [value]="" rows="7 " id="descr-textarea" disabled></textarea>
+  <textarea
+    [value]="facade.selectedRecipe.description"
+    rows="5 "
+    id="descr-textarea"
+    disabled
+  ></textarea>
   <div class="row">
     <div class="col-xs-12">
       <div class="flex align-items-center">
-        <p-chip styleClass="customRecipeIngredientChip"><b></b></p-chip>
+        <hr />
+        <p-chip
+          styleClass="customRecipeIngredientChip"
+          *ngFor="let item of facade.selectedRecipe.ingredients"
+          ><b>{{ item.name }}</b> ({{ item.amount }})</p-chip
+        >
       </div>
     </div>
   </div>
@@ -24,7 +43,7 @@
     ></p-dropdown>
   </ng-template>
 </p-card>
-<!--<app-recipe-dialog
+<app-recipe-dialog
   [display]="displayDialog"
   (dialogOutput)="onDialogClose($event)"
-></app-recipe-dialog>-->
+></app-recipe-dialog>

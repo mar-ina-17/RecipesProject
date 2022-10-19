@@ -1,8 +1,10 @@
 import { Ingredient } from './shared.models';
-export interface Recipe {
-  id: number;
-  name: string;
-  description: string;
-  imagePath: string;
-  ingredients: Ingredient[];
+export class Recipe {
+  constructor(
+    public name: string = '',
+    public description: string = '',
+    public imagePath: string = '',
+    public ingredients: Ingredient[] = [],
+    public id?: number
+  ) {}
 }

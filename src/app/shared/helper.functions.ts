@@ -1,14 +1,20 @@
-export function exists(array, props: { id?: number; name?: string }): boolean {
+export function exists(array, props: { name?: string; id?: number }): boolean {
   return array.some((el) => {
-    return el.id === props.id || el.name === props.name;
+    return el.name === props.name || el.id === props.id;
+  });
+}
+
+export function ingExists(array, name: string): boolean {
+  return array.some((el) => {
+    return el.name === name;
   });
 }
 
 export function existsOnIndex(
   array,
-  props: { id?: number; name?: string }
+  props: { name?: string; id?: number }
 ): number {
-  return array.findIndex((x) => x.id === props.id || x.name === props.name);
+  return array.findIndex((x) => x.name === props.name || x.id === props.id);
 }
 
 export function generateId(min, max): number {

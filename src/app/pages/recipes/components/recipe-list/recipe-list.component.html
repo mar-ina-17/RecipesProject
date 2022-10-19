@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <p-button pButton (click)="displayDialog = true">New Recipe</p-button>
+    <p-button pButton (click)="onNew()">New Recipe</p-button>
   </div>
 </div>
 <hr />
@@ -13,8 +13,7 @@
     ></app-recipe-item>
   </div>
 </div>
-<!--<app-recipe-dialog
+<app-recipe-dialog
   [display]="displayDialog"
   (dialogOutput)="onDialogClose()"
-  [recipe]="newRecipe"
-></app-recipe-dialog>-->
+></app-recipe-dialog>

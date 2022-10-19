@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Option } from '../../../../shared/models/shared.models';
+import { RecipesFacade } from './../../store/recipe.facade';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -7,6 +8,8 @@ import { Option } from '../../../../shared/models/shared.models';
   styleUrls: ['./recipe-detail.component.scss'],
 })
 export class RecipeDetailComponent implements OnInit {
+  @Output() deleteRecipeOutput = new EventEmitter();
+
   selectedOption: Option | undefined;
   displayDialog: boolean = false;
 
@@ -17,7 +20,7 @@ export class RecipeDetailComponent implements OnInit {
     { name: 'Delete', index: 3 },
   ];
 
-  constructor() {}
+  constructor(public readonly facade: RecipesFacade) {}
   ngOnInit(): void {}
 
   triggerOptionsAction() {
@@ -27,10 +30,10 @@ export class RecipeDetailComponent implements OnInit {
       }
       case 2: {
         this.displayDialog = true;
-        // this.recipeCopy = JSON.parse(JSON.stringify(this.recipe));
         break;
       }
       case 3: {
+        this.deleteRecipeOutput.emit(this.facade.selectedRecipe);
         break;
       }
     }

@@ -17,6 +17,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { TruncatePipe } from '../../shared/pipes/string-truncate.pipe';
 import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
+import { RecipeDialogComponent } from './components/recipe-dialog/recipe-dialog.component';
 import { RecipeItemComponent } from './components/recipe-list/recipe-item/recipe-item.component';
 import { RecipeListComponent } from './components/recipe-list/recipe-list.component';
 import { RecipesRoutingModule } from './recipes-routing.module';
@@ -26,6 +27,7 @@ import { RecipesComponent } from './recipes.component';
   declarations: [
     RecipesComponent,
     RecipeDetailComponent,
+    RecipeDialogComponent,
     RecipeItemComponent,
     RecipeListComponent,
     TruncatePipe,

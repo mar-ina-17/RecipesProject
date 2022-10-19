@@ -8,15 +8,22 @@ import { Recipe } from '../../../../shared/models/shared.models';
 })
 export class RecipeListComponent implements OnInit {
   @Output() onSelectedOutput = new EventEmitter<Recipe>();
+  @Output() onNewOutput = new EventEmitter();
+
   @Input() recipes: Recipe[] = [];
+
   displayDialog: boolean = false;
-  newRecipe: Recipe;
 
   constructor() {}
   ngOnInit(): void {}
 
   onSelected(recipe: Recipe) {
     this.onSelectedOutput.emit(recipe);
+  }
+
+  onNew() {
+    this.displayDialog = true;
+    this.onNewOutput.emit();
   }
 
   onDialogClose() {
