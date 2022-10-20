@@ -17,7 +17,6 @@ export class ShoppingListService {
     });
   }
   addIngredientService = (ingredient: Ingredient) => {
-    console.log(helpers.exists(this.ingredients, { name: ingredient.name }));
     if (!helpers.exists(this.ingredients, { name: ingredient.name })) {
       this.ingredients.push(ingredient);
     } else {

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
-import { Data } from 'src/app/shared/models/shared.models';
 
 @Component({
   selector: 'app-header',
@@ -9,12 +8,6 @@ import { Data } from 'src/app/shared/models/shared.models';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  dataOptions: Data[] = [
-    { name: 'Save Data', code: 'NY' },
-    { name: 'Fetch Data', code: 'RM' },
-  ];
-  selectedOption: Data;
-
   items: MenuItem[] = [
     {
       label: 'Recipes',

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Ingredient } from 'src/app/shared/models/shared.models';
+import * as message from '../../shared/models/messages';
 
 @Component({
   selector: 'app-ingredient-inputs',
@@ -22,12 +23,7 @@ export class IngredientInputsComponent implements OnInit {
 
   addIngredient(event: Event) {
     if (!this.name || !this.amount) {
-      this.messageService.add({
-        key: 'warn-key',
-        severity: 'error',
-        summary: 'Error',
-        detail: 'Please, fill in the name and amount of the ingredient! ',
-      });
+      this.messageService.add(message.IngredientError);
     } else {
       const newIngredient =
         this.name && this.amount

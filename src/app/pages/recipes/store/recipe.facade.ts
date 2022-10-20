@@ -20,12 +20,10 @@ export class RecipesFacade {
   }
 
   public selectRecipe(recipe) {
-    // Object.assign(this.selectedRecipe, recipe);
     this.selectedRecipe = JSON.parse(JSON.stringify(recipe));
     this.selectedRecipe.ingredients = [...recipe.ingredients];
   }
   public discardChanges(recipe) {
-    //this.selectedRecipe = this.recipes$.map(e);
     this.selectRecipe(recipe);
   }
   public updateRecipe(recipe) {

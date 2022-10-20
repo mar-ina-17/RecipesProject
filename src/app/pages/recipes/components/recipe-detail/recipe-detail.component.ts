@@ -1,29 +1,27 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Option } from '../../../../shared/models/shared.models';
+import { ConfirmationService } from 'primeng/api';
+import { recipe_options } from '../../../../shared/models/shared.models';
 import { RecipesFacade } from './../../store/recipe.facade';
 
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',
   styleUrls: ['./recipe-detail.component.scss'],
+  providers: [ConfirmationService],
 })
 export class RecipeDetailComponent implements OnInit {
   @Output() deleteRecipeOutput = new EventEmitter();
-
-  selectedOption: Option | undefined;
+  recipeOptions: Array<Object> = recipe_options;
   displayDialog: boolean = false;
+  selectedOption;
 
-  recipeOptions: Option[] = [
-    { name: 'Options', index: 0 },
-    { name: 'Add to shopping list', index: 1 },
-    { name: 'Edit', index: 2 },
-    { name: 'Delete', index: 3 },
-  ];
-
-  constructor(public readonly facade: RecipesFacade) {}
+  constructor(
+    public readonly facade: RecipesFacade,
+    private confirmationService: ConfirmationService
+  ) {}
   ngOnInit(): void {}
 
-  triggerOptionsAction() {
+  triggerOptionsAction(e) {
     switch (this.selectedOption.index) {
       case 1: {
         break;
@@ -33,14 +31,24 @@ export class RecipeDetailComponent implements OnInit {
         break;
       }
       case 3: {
-        this.deleteRecipeOutput.emit(this.facade.selectedRecipe);
+        this.confirmationService.confirm({
+          target: e.originalEvent.target.parentElement,
+          message: 'Are you sure you want to delete this recipe?',
+          icon: 'pi pi-exclamation-triangle',
+          accept: () => {
+            this.deleteRecipeOutput.emit(this.facade.selectedRecipe);
+          },
+          reject: () => {
+            this.selectedOption = this.recipeOptions[0];
+          },
+        });
         break;
       }
     }
   }
 
-  onDialogClose(state: boolean) {
+  onDialogClose(dialogStatus: boolean) {
     this.selectedOption = this.recipeOptions[0];
-    this.displayDialog = state;
+    this.displayDialog = dialogStatus;
   }
 }

@@ -1,12 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { Ingredient, Recipe } from 'src/app/shared/models/shared.models';
 import * as helpers from '../../../../shared/helper.functions';
+import * as messages from '../../../../shared/models/messages';
 import { RecipesFacade } from './../../store/recipe.facade';
 
 @Component({
   selector: 'app-recipe-dialog',
   templateUrl: './recipe-dialog.component.html',
   styleUrls: ['./recipe-dialog.component.scss'],
+  providers: [MessageService],
 })
 export class RecipeDialogComponent implements OnInit {
   @Input() display: boolean;
@@ -14,7 +17,10 @@ export class RecipeDialogComponent implements OnInit {
 
   recipeCopy: Recipe = new Recipe();
 
-  constructor(private facade: RecipesFacade) {}
+  constructor(
+    private facade: RecipesFacade,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -28,6 +34,7 @@ export class RecipeDialogComponent implements OnInit {
   }
 
   closeDialogEmit() {
+    this.recipeCopy = new Recipe();
     this.dialogOutput.emit();
   }
 
@@ -51,13 +58,16 @@ export class RecipeDialogComponent implements OnInit {
   }
 
   saveRecipeChanges() {
-    if (this.recipeCopy.id) {
-      this.facade.updateRecipe(this.recipeCopy);
-      this.facade.selectRecipe(this.recipeCopy);
+    if (this.recipeCopy.name && this.recipeCopy.description) {
+      if (this.recipeCopy.id) {
+        this.facade.updateRecipe(this.recipeCopy);
+        this.facade.selectRecipe(this.recipeCopy);
+      } else {
+        this.facade.addRecipe(this.recipeCopy);
+      }
+      this.display = false;
     } else {
-      console.log('save new recipe');
-      this.facade.addRecipe(this.recipeCopy);
+      this.messageService.add(messages.RecipeError);
     }
-    this.display = false;
   }
 }

@@ -34,6 +34,7 @@
       </div>
     </div>
   </div>
+  <p-confirmPopup></p-confirmPopup>
   <ng-template pTemplate="footer">
     <p-dropdown
       [options]="recipeOptions"
@@ -43,6 +44,7 @@
     ></p-dropdown>
   </ng-template>
 </p-card>
+
 <app-recipe-dialog
   [display]="displayDialog"
   (dialogOutput)="onDialogClose($event)"

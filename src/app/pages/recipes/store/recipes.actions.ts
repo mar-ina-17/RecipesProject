@@ -22,19 +22,8 @@ export const addRecipe = createAction(
   '[ADD RECIPE] Adding recipe',
   props<{ recipe: Recipe }>()
 );
-
 export const addRecipeSuccess = createAction(
-  '[ADD RECIPE SUCCESS] Adding recipe - successful',
-  props<{ recipe: Recipe }>()
-);
-
-export const deleteRecipe = createAction(
-  '[DELETE RECIPE] Deleting recipe',
-  props<{ id: number }>()
-);
-export const deleteRecipeSuccess = createAction(
-  '[DELETE RECIPE] Deleting recipe',
-  props<{ id: number }>()
+  '[ADD RECIPE SUCCESS] Adding recipe - successful'
 );
 
 export const updateRecipe = createAction(
@@ -42,6 +31,13 @@ export const updateRecipe = createAction(
   props<{ id: number; recipe: Recipe }>()
 );
 export const updateRecipeSuccess = createAction(
-  '[UPDATE RECIPE SUCCESSFUL] Updating recipe - successful',
-  props<{ id: number; recipe: Recipe }>()
+  '[UPDATE RECIPE SUCCESS] Updating recipe - successful'
+);
+
+export const deleteRecipe = createAction(
+  '[DELETE RECIPE] Deleting recipe',
+  props<{ id: number }>()
+);
+export const deleteRecipeSuccess = createAction(
+  '[DELETE RECIPE SUCCESS] Deleting recipe - successful'
 );

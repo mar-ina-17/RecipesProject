@@ -21,7 +21,6 @@ export class RecipesComponent implements OnInit {
     this.recipeSub = this.facade.recipes$.subscribe((data: Recipe[]) => {
       if (data && data.length) {
         this.recipes = data;
-        console.log('recipes: ', this.recipes);
       } else {
         this.recipes = [];
       }
@@ -31,7 +30,6 @@ export class RecipesComponent implements OnInit {
     this.recipeSub.unsubscribe();
   }
   deleteRecipe(e) {
-    console.log('lasjdlajs', e);
     this.facade.deleteRecipe(e.id);
     this.selectedRecipe = false;
     this.facade.loadRecipes();

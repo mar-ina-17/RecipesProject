@@ -26,10 +26,11 @@
     <br />
 
     <div class="col-12 md:col-4">
-      <label for="name">Name: </label><br />
+      <label for="name">Name (required): </label><br />
 
       <div class="p-inputgroup">
         <input
+          required
           type="text"
           [(ngModel)]="recipeCopy.name"
           pInputText
@@ -41,10 +42,11 @@
     <br />
 
     <div class="col-12 md:col-4">
-      <label for="description">Description: </label>
+      <label for="description">Description (required): </label>
 
       <div class="p-inputgroup">
         <textarea
+          required
           type="text"
           [(ngModel)]="recipeCopy.description"
           pInputText
@@ -62,7 +64,7 @@
           (addIngredientOutput)="addIngredientToRecipe($event)"
         ></app-ingredient-inputs>
       </div>
-      <div class="flex align-items-center">
+      <div class="flex align-items-center" style="max-width: 500px">
         <p-chip
           *ngFor="let item of recipeCopy.ingredients; let index"
           [removable]="true"
@@ -79,3 +81,4 @@
     <p-button (click)="saveRecipeChanges()">Save</p-button>
   </ng-template>
 </p-dialog>
+<p-toast position="top-right" key="warn-key"></p-toast>

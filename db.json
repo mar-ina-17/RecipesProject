@@ -2,60 +2,67 @@
   "ingredients": [
     {
       "id": 1,
-      "name": "Potatoes"
+      "name": "Potatoes",
+      "amount": 17
     },
     {
       "id": 2,
-      "name": "Tomatoes"
+      "name": "Tomatoes",
+      "amount": 8
     },
     {
       "id": 3,
-      "name": "Cheese"
+      "name": "Cheese",
+      "amount": 2
     },
     {
       "id": 4,
-      "name": "Bread"
+      "name": "Bread",
+      "amount": 7
     },
     {
       "id": 5,
-      "name": "Fish"
+      "name": "Fish",
+      "amount": 5
     },
     {
       "id": 6,
-      "name": "Milk"
+      "name": "Milk",
+      "amount": 3
     }
   ],
   "recipes": [
     {
-      "id": 1,
-      "imagePath": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Food_basket.jpg",
-      "name": "Recipe 1 тест",
+      "name": "Спагети Болонезе",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec ultrices tincidunt arcu non sodales neque. Congue mauris rhoncus aenean vel elit. Bibendum ut tristique et egestas quis ipsum. Dictum varius duis at consectetur lorem donec massa sapien. Tellus mauris a diam maecenas sed enim ut sem viverra. ",
+      "imagePath": "https://live.staticflickr.com/3839/14974952510_673ed533af_b.jpg",
       "ingredients": [
         {
-          "id": 1,
           "name": "Tomatoes",
-          "amount": 3
+          "amount": 2
         },
         {
-          "id": 2,
-          "name": "Milk",
+          "name": "Basil",
           "amount": 1
         },
         {
-          "id": 3,
-          "name": "Bread",
-          "amount": 4
-        }
-      ],
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec ultrices tincidunt arcu non sodales neque. Congue mauris rhoncus aenean vel elit. Bibendum ut tristique et egestas quis ipsum. Dictum varius duis at consectetur lorem donec massa sapien. Tellus mauris a diam maecenas sed enim ut sem viverra. "
-    },
-    {
-      "name": "Спагети Болонезе",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec ultrices tincidunt arcu non sodales neque. Congue mauris rhoncus aenean vel elit. Bibendum ut tristique et egestas quis ipsum. Dictum varius duis at consectetur lorem donec massa sapien. Tellus mauris a diam maecenas sed enim ut sem viverra. ",
-      "imagePath": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Food_basket.jpg",
-      "ingredients": [
+          "name": "Tomato sauce",
+          "amount": 2
+        },
         {
-          "name": "паста",
+          "name": "Meatballs",
+          "amount": 10
+        },
+        {
+          "name": "Spaghetti",
+          "amount": 1
+        },
+        {
+          "name": "Oil",
+          "amount": 1
+        },
+        {
+          "name": "Bread",
           "amount": 2
         }
       ],
