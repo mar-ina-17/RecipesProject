@@ -2,7 +2,6 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 import { recipe_options } from '../../../../shared/models/shared.models';
 import { RecipesFacade } from './../../store/recipe.facade';
-
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',
@@ -24,6 +23,9 @@ export class RecipeDetailComponent implements OnInit {
   triggerOptionsAction(e) {
     switch (this.selectedOption.index) {
       case 1: {
+        /* this.facade.selectedRecipe.ingredients.map((ing) => {
+          this.shoppingListComponent.addIngredient(ing);
+        });*/
         break;
       }
       case 2: {

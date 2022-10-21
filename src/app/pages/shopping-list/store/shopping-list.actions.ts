@@ -22,6 +22,15 @@ export const addIngredientSuccess = createAction(
   '[ADD INGREDIENT SUCCESS] Adding ingredient - successful'
 );
 
+export const updateIngredient = createAction(
+  '[UPDATE INGREDIENT] Updating ingredient...',
+  props<{ ingredient: Ingredient }>()
+);
+
+export const updateIngredientSuccess = createAction(
+  '[UPDATE INGREDIENT SUCCESS] Updating ingredient - successful'
+);
+
 export const deleteIngredient = createAction(
   '[DELETE INGREDIENT] Deleting ingredient...',
   props<{ id: number }>()

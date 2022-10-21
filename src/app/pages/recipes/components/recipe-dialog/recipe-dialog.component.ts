@@ -50,9 +50,10 @@ export class RecipeDialogComponent implements OnInit {
       this.recipeCopy.ingredients,
       ingredient.name
     );
-    let index = helpers.existsOnIndex(this.recipeCopy.ingredients, {
-      name: ingredient.name,
-    });
+    let index = helpers.existsOnIndex(
+      this.recipeCopy.ingredients,
+      ingredient.name
+    );
     if (exists) this.recipeCopy.ingredients[index].amount += ingredient.amount;
     else this.recipeCopy.ingredients.push(ingredient);
   }

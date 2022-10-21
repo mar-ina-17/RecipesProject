@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, Observable, switchMap } from 'rxjs';
+import { catchError, map, Observable, of, switchMap } from 'rxjs';
 import { Ingredient } from 'src/app/shared/models/ingredient.model';
 import * as shoppingListActions from './shopping-list.actions';
 import { ShoppingListService } from './shopping-list.service';
@@ -16,16 +16,42 @@ export class ShoppingListEffect {
       ofType(shoppingListActions.fetchShoppingList),
       switchMap(() => this.shoppingListService.getShoppingList()),
       map(
-        (data: Ingredient[]) => {
-          console.log(data);
-          return shoppingListActions.fetchShoppingListSuccess({
+        (data: Ingredient[]) =>
+          shoppingListActions.fetchShoppingListSuccess({
             ingredients: data,
-          });
-        }
-        //catchError((error: string | null) =>
-        // of(shoppingListActions.fetchShoppingListError())
-        //)
+          }),
+        catchError((error: string | null) =>
+          of(shoppingListActions.fetchShoppingListError())
+        )
       )
+    );
+  });
+
+  public addIngredient$: Observable<any> = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(shoppingListActions.addIngredient),
+      switchMap(({ ingredient }) =>
+        this.shoppingListService.addIngredient(ingredient)
+      ),
+      map(() => shoppingListActions.addIngredientSuccess())
+    );
+  });
+
+  public deleteIndgredient$: Observable<any> = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(shoppingListActions.deleteIngredient),
+      switchMap(({ id }) => this.shoppingListService.deleteIngredient(id)),
+      map(() => shoppingListActions.deleteIngredientSuccess())
+    );
+  });
+
+  public updateIngredient$: Observable<any> = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(shoppingListActions.updateIngredient),
+      switchMap(({ ingredient }) =>
+        this.shoppingListService.updateIngredient(ingredient)
+      ),
+      map(() => shoppingListActions.updateIngredientSuccess())
     );
   });
 }

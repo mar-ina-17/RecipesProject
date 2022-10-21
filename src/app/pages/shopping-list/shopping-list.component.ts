@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 import { Subscription } from 'rxjs';
+import * as helpers from '../../shared/helper.functions';
 import { Ingredient } from '../../shared/models/shared.models';
 import { ShoppingListFacade } from './store/shopping-list.facade';
 
@@ -28,17 +29,28 @@ export class ShoppingListComponent implements OnInit {
         } else {
           this.ingredients = [];
         }
-        console.log('data', data);
       }
     );
   }
+  addIngredient(ing: Ingredient) {
+    if (helpers.ingExists(this.ingredients, ing.name)) {
+      let ingredientCopy = {
+        ...this.ingredients[helpers.existsOnIndex(this.ingredients, ing.name)],
+      };
+      ingredientCopy.amount += ing.amount;
+      this.facade.updateIngredient(ingredientCopy);
+    } else {
+      this.facade.addIngredient(ing);
+    }
+    this.facade.loadShoppingList();
+  }
 
   deleteIngredient(id): void {
-    /*this.confirmService.confirm({
+    this.confirmService.confirm({
       message: 'Are you sure that you want to delete this ingredient?',
       accept: () => {
-        this.list.deleteIngredientService(id);
+        this.facade.deleteIngredient(id);
       },
-    });*/
+    });
   }
 }

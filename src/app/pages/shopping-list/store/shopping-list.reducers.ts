@@ -24,6 +24,12 @@ const shoppingList_reducer = createReducer(
   on(fromShoppingListActions.deleteIngredient, (state, action) => ({
     ...state,
     ingredients: state.ingredients.filter((ing) => ing.id !== action.id),
+  })),
+  on(fromShoppingListActions.updateIngredient, (state, action) => ({
+    ...state,
+    ingredients: state.ingredients.map((i) => {
+      return i.name === action.ingredient.name ? { ...action.ingredient } : i;
+    }),
   }))
 );
 

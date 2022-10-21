@@ -6,15 +6,12 @@ export function exists(array, props: { name?: string; id?: number }): boolean {
 
 export function ingExists(array, name: string): boolean {
   return array.some((el) => {
-    return el.name === name;
+    return el.name.toLowerCase() === name.toLowerCase();
   });
 }
 
-export function existsOnIndex(
-  array,
-  props: { name?: string; id?: number }
-): number {
-  return array.findIndex((x) => x.name === props.name || x.id === props.id);
+export function existsOnIndex(array, name: string): number {
+  return array.findIndex((x) => x.name.toLowerCase() === name.toLowerCase());
 }
 
 export function generateId(min, max): number {
