@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Recipe } from 'src/app/shared/models/recipe.model';
 
+import { Recipe } from 'src/app/shared/models/recipe.model';
 import { RecipesFacade } from './store/recipe.facade';
 @Component({
   selector: 'app-recipes',

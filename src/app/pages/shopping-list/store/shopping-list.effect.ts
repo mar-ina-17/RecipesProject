@@ -20,9 +20,7 @@ export class ShoppingListEffect {
           shoppingListActions.fetchShoppingListSuccess({
             ingredients: data,
           }),
-        catchError((error: string | null) =>
-          of(shoppingListActions.fetchShoppingListError())
-        )
+        catchError(() => of(shoppingListActions.fetchShoppingListError()))
       )
     );
   });

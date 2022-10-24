@@ -1,9 +1,3 @@
-export function exists(array, props: { name?: string; id?: number }): boolean {
-  return array.some((el) => {
-    return el.name === props.name || el.id === props.id;
-  });
-}
-
 export function ingExists(array, name: string): boolean {
   return array.some((el) => {
     return el.name.toLowerCase() === name.toLowerCase();

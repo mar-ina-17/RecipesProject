@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 import { recipe_options } from '../../../../shared/models/shared.models';
+import { ShoppingListFacade } from './../../../shopping-list/store/shopping-list.facade';
 import { RecipesFacade } from './../../store/recipe.facade';
 @Component({
   selector: 'app-recipe-detail',
@@ -16,16 +17,17 @@ export class RecipeDetailComponent implements OnInit {
 
   constructor(
     public readonly facade: RecipesFacade,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private shoppingListFacade: ShoppingListFacade
   ) {}
   ngOnInit(): void {}
 
   triggerOptionsAction(e) {
     switch (this.selectedOption.index) {
       case 1: {
-        /* this.facade.selectedRecipe.ingredients.map((ing) => {
-          this.shoppingListComponent.addIngredient(ing);
-        });*/
+        this.facade.selectedRecipe.ingredients.map((ing) => {
+          this.shoppingListFacade.addIngredient(ing);
+        });
         break;
       }
       case 2: {

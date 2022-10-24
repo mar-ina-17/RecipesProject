@@ -11,13 +11,14 @@ export class ShoppingListFacade {
   public readonly shoppingList$: Observable<Ingredient[]> = this.store.pipe(
     select(shoppingListSelectors.getShoppingListIngredients)
   );
+
   constructor(private readonly store: Store<AppState>) {}
   public loadShoppingList(): void {
     this.store.dispatch(shoppingListActions.fetchShoppingList());
   }
-
   public addIngredient(ingredient: Ingredient) {
-    ingredient.id = helpers.generateId(0, 100);
+    if (!ingredient.id) helpers.generateId(0, 100);
+
     this.store.dispatch(
       shoppingListActions.addIngredient({ ingredient: ingredient })
     );

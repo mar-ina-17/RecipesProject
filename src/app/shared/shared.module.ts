@@ -11,11 +11,7 @@ import { ToastModule } from 'primeng/toast';
 import { HeaderComponent } from './header/header.component';
 import { IngredientInputsComponent } from './ingredient-inputs/ingredient-inputs.component';
 @NgModule({
-  declarations: [
-    HeaderComponent,
-    //RecipeDialogComponent,
-    IngredientInputsComponent,
-  ],
+  declarations: [HeaderComponent, IngredientInputsComponent],
   imports: [
     ButtonModule,
     MenubarModule,
@@ -32,7 +28,6 @@ import { IngredientInputsComponent } from './ingredient-inputs/ingredient-inputs
     ButtonModule,
     MenubarModule,
     DialogModule,
-    // RecipeDialogComponent,
     DropdownModule,
     FormsModule,
     IngredientInputsComponent,

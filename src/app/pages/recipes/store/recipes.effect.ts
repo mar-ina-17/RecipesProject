@@ -21,9 +21,7 @@ export class RecipesEffects {
       map(
         (data: Recipe[]) =>
           recipeActions.fetchRecipesSuccess({ recipes: data }),
-        catchError((error: string | null) =>
-          of(recipeActions.fetchRecipesFailure())
-        )
+        catchError(() => of(recipeActions.fetchRecipesFailure()))
       )
     );
   });
