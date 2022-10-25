@@ -14,41 +14,6 @@
       "name": "Basil",
       "amount": 1,
       "id": 4
-    },
-    {
-      "name": "Tomatoes",
-      "amount": 2,
-      "id": 5
-    },
-    {
-      "name": "Tomato sauce",
-      "amount": 2,
-      "id": 6
-    },
-    {
-      "name": "Meatballs",
-      "amount": 10,
-      "id": 7
-    },
-    {
-      "name": "Oil",
-      "amount": 1,
-      "id": 8
-    },
-    {
-      "name": "Spaghetti",
-      "amount": 1,
-      "id": 9
-    },
-    {
-      "name": "Bread",
-      "amount": 2,
-      "id": 10
-    },
-    {
-      "name": "Bread11",
-      "amount": 2,
-      "id": 11
     }
   ],
   "recipes": [

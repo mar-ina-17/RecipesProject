@@ -18,7 +18,7 @@ export class RecipesComponent implements OnInit {
 
   ngOnInit(): void {
     this.facade.loadRecipes();
-    this.recipeSub = this.facade.recipes$.subscribe((data: Recipe[]) => {
+    this.recipeSub = this.facade.recipes$.subscribe((data) => {
       if (data && data.length) {
         this.recipes = data;
       } else {

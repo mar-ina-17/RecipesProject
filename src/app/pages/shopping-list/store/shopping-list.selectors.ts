@@ -1,14 +1,17 @@
-import { createSelector } from '@ngrx/store';
-import { AppState } from 'src/app/store/app.reducers';
-import { ShoppingListState } from './shopping-list.state';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import {
+  ShoppingListState,
+  SHOPPING_LIST_FEATURE_NAME,
+} from './shopping-list.state';
 
-export const shoppingListSelector = (state: AppState) => state.ingredients;
-
+export const shoppingListState = createFeatureSelector<ShoppingListState>(
+  SHOPPING_LIST_FEATURE_NAME
+);
 export const getShoppingListIngredients = createSelector(
-  shoppingListSelector,
+  shoppingListState,
   (state: ShoppingListState) => state.ingredients
 );
 export const getShoppingListReady = createSelector(
-  shoppingListSelector,
+  shoppingListState,
   (state: ShoppingListState) => state.isReady
 );

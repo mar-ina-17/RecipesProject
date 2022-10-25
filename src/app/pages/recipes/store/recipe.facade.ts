@@ -2,18 +2,19 @@ import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Recipe } from 'src/app/shared/models/shared.models';
-import { AppState } from './../../../store/app.reducers';
 import * as recipeActions from './recipes.actions';
 import * as recipeSelectors from './recipes.selectors';
+import { RecipesState } from './recipes.state';
 
 @Injectable()
 export class RecipesFacade {
   public readonly recipes$: Observable<Recipe[]> = this.store.pipe(
     select(recipeSelectors.getAllRecipes)
   );
+
   public selectedRecipe: Recipe = new Recipe();
 
-  constructor(private readonly store: Store<AppState>) {}
+  constructor(private readonly store: Store<RecipesState>) {}
 
   public loadRecipes(): void {
     this.store.dispatch(recipeActions.fetchRecipes());

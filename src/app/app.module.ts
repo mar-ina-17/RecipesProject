@@ -8,8 +8,6 @@ import { ShoppingListFacade } from './pages/shopping-list/store/shopping-list.fa
 import { EffectsModule } from '@ngrx/effects';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RecipesEffects } from './pages/recipes/store/recipes.effect';
-import * as fromRecipes from './pages/recipes/store/recipes.reducer';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -20,8 +18,8 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     SharedModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({ recipes: fromRecipes.recipesReducer }),
-    EffectsModule.forRoot([RecipesEffects]),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot(),
   ],
   providers: [ShoppingListFacade],
   bootstrap: [AppComponent],

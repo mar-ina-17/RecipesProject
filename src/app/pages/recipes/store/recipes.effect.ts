@@ -4,7 +4,17 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
 import { Recipe } from 'src/app/shared/models/shared.models';
 
-import * as recipeActions from './recipes.actions';
+import {
+  addRecipe,
+  addRecipeSuccess,
+  deleteRecipe,
+  deleteRecipeSuccess,
+  fetchRecipes,
+  fetchRecipesFailure,
+  fetchRecipesSuccess,
+  updateRecipe,
+  updateRecipeSuccess,
+} from './recipes.actions';
 import { RecipesService } from './recipes.service';
 
 @Injectable({ providedIn: 'root' })
@@ -16,45 +26,44 @@ export class RecipesEffects {
 
   public readonly fetchRecipes$: Observable<any> = createEffect(() => {
     return this.actions$.pipe(
-      ofType(recipeActions.fetchRecipes),
+      ofType(fetchRecipes),
       switchMap(() => this.recipesService.getRecipes()),
       map(
-        (data: Recipe[]) =>
-          recipeActions.fetchRecipesSuccess({ recipes: data }),
-        catchError(() => of(recipeActions.fetchRecipesFailure()))
+        (data: Recipe[]) => fetchRecipesSuccess({ recipes: data }),
+        catchError(() => of(fetchRecipesFailure()))
       )
     );
   });
 
   public updateRecipe$: Observable<any> = createEffect(() => {
     return this.actions$.pipe(
-      ofType(recipeActions.updateRecipe),
+      ofType(updateRecipe),
       switchMap(({ recipe }) =>
         this.recipesService
           .updateRecipe(recipe)
-          .pipe(map(() => recipeActions.updateRecipeSuccess()))
+          .pipe(map(() => updateRecipeSuccess()))
       )
     );
   });
 
   public addRecipe$: Observable<any> = createEffect(() => {
     return this.actions$.pipe(
-      ofType(recipeActions.addRecipe),
+      ofType(addRecipe),
       switchMap(({ recipe }) =>
         this.recipesService
           .addRecipe(recipe)
-          .pipe(map(() => recipeActions.addRecipeSuccess()))
+          .pipe(map(() => addRecipeSuccess()))
       )
     );
   });
 
   public deleteRecipe$: Observable<any> = createEffect(() => {
     return this.actions$.pipe(
-      ofType(recipeActions.deleteRecipe),
+      ofType(deleteRecipe),
       mergeMap(({ id }) =>
         this.recipesService
           .deleteRecipe(id)
-          .pipe(map(() => recipeActions.deleteRecipeSuccess()))
+          .pipe(map(() => deleteRecipeSuccess()))
       )
     );
   });
