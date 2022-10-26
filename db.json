@@ -1,4 +1,11 @@
 {
+  "users": [
+    {
+      "email": "usr1@abv.bg",
+      "password": "$2a$10$d3QIGj67ZclzI7aLH3RHceWRoS4odiHlcv4Q0fQzaYbRASHKOmYW.",
+      "id": 1
+    }
+  ],
   "ingredients": [
     {
       "id": 1,

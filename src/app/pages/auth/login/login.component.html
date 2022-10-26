@@ -1,0 +1,21 @@
+<div class="container">
+  <p-card header="Login" [style]="{ width: '30rem', margin: 'auto' }">
+    <h5>Email:</h5>
+    <input type="text" pInputText [(ngModel)]="email" />
+
+    <h5>Password:</h5>
+    <p-password
+      [toggleMask]="true"
+      [feedback]="false"
+      [(ngModel)]="password"
+      styleClass="p-password p-component p-inputwrapper p-input-icon-right"
+    ></p-password>
+
+    <ng-template pTemplate="footer">
+      <div class="d-flex" style="margin-left: auto">
+        <button class="p-button" (click)="login()">Login</button>
+      </div>
+    </ng-template>
+  </p-card>
+</div>
+<p-toast></p-toast>

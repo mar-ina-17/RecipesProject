@@ -1,9 +1,9 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import * as RecipesActions from './recipes.actions';
-import * as fromRecipesState from './recipes.state';
+import { initialState, RecipesState } from './recipes.state';
 
 const recipes_reducer = createReducer(
-  fromRecipesState.initialState,
+  initialState,
   on(RecipesActions.fetchRecipesSuccess, (state, { recipes }) => ({
     ...state,
     recipes: recipes,
@@ -35,9 +35,6 @@ const recipes_reducer = createReducer(
   }))
 );
 
-export function recipesReducer(
-  state: fromRecipesState.RecipesState,
-  action: Action
-) {
+export function recipesReducer(state: RecipesState, action: Action) {
   return recipes_reducer(state, action);
 }
