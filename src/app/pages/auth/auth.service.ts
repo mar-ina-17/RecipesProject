@@ -1,34 +1,37 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from 'src/app/shared/models/shared.models';
+import { sessionData } from './../../shared/models/shared.models';
+import { LocalStorageService } from './store/local-storage.service';
+import { SessionStorageService } from './store/session-storage.service';
 
-@Injectable({ providedIn: 'root' })
+@Inject([SessionStorageService, LocalStorageService])
+@Injectable()
 export class AuthenticationService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private _sesionStorageService: SessionStorageService,
+    private _localStorageService: LocalStorageService
+  ) {}
 
   url = 'http://localhost:3000/';
 
   isAuthenticated(): boolean {
-    return JSON.parse(sessionStorage.getItem('currentUser')).accessToken != ''
-      ? true
-      : false;
+    console.log('loaded: ', this._localStorageService.loadToken());
+    return false;
   }
 
   login(usr) {
     this.http.post(this.url + 'login', usr).subscribe(
-      (res) => {
-        sessionStorage.setItem('currentUser', JSON.stringify(res));
-        //sessionStorage.setItem('accessToken', JSON.stringify(JSON.parse(res).accessToken));
+      (res: sessionData) => {
+        this._sesionStorageService.setInfo(res);
         this.router.navigateByUrl('/recipes');
+        this._localStorageService.setToken();
       },
       (err) => {
-        sessionStorage.setItem('currentUser', JSON.stringify(new User()));
-        sessionStorage.setItem(
-          'error',
-          'Login failed - invalid username or password, status code: ' +
-            err.status
-        );
+        console.log(err);
+        this._sesionStorageService.clearAllSessionStorage();
       }
     );
   }

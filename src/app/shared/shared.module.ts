@@ -1,16 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { ChipModule } from 'primeng/chip';
-import { InputTextModule } from 'primeng/inputtext';
-import { PasswordModule } from 'primeng/password';
-
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
 import { MenubarModule } from 'primeng/menubar';
+import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
 import { HeaderComponent } from './header/header.component';
 import { IngredientInputsComponent } from './ingredient-inputs/ingredient-inputs.component';
@@ -29,6 +28,7 @@ import { IngredientInputsComponent } from './ingredient-inputs/ingredient-inputs
     ConfirmPopupModule,
     PasswordModule,
     InputTextModule,
+    ReactiveFormsModule,
   ],
   exports: [
     HeaderComponent,
@@ -45,6 +45,7 @@ import { IngredientInputsComponent } from './ingredient-inputs/ingredient-inputs
     CardModule,
     PasswordModule,
     InputTextModule,
+    ReactiveFormsModule,
   ],
 })
 export class SharedModule {}

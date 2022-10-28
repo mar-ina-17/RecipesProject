@@ -12,4 +12,12 @@ export interface Data {
   name: string;
   code: string;
 }
+
+export interface sessionData {
+  accessToken: string;
+  user: User;
+}
+
+export let refreshToken: string = '';
+
 export { Recipe, Ingredient, User };
