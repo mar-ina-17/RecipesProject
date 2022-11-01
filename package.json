@@ -23,6 +23,7 @@
     "@ngrx/effects": "^14.3.2",
     "@ngrx/store": "^14.3.2",
     "bootstrap": "^3.4.1",
+    "buffer": "^6.0.3",
     "primeng": "^14.1.2",
     "rxjs": "~7.5.0",
     "sass-loader": "^13.1.0",

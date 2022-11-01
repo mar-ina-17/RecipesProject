@@ -11,8 +11,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { MenubarModule } from 'primeng/menubar';
 import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
+import { TokenGenerator } from 'ts-token-generator';
 import { HeaderComponent } from './header/header.component';
 import { IngredientInputsComponent } from './ingredient-inputs/ingredient-inputs.component';
+
 @NgModule({
   declarations: [HeaderComponent, IngredientInputsComponent],
   imports: [
@@ -47,5 +49,6 @@ import { IngredientInputsComponent } from './ingredient-inputs/ingredient-inputs
     InputTextModule,
     ReactiveFormsModule,
   ],
+  providers: [TokenGenerator],
 })
 export class SharedModule {}

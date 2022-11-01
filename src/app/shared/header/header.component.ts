@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
-
+import { AuthenticationService } from '../../store/auth/auth.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -25,6 +25,20 @@ export class HeaderComponent implements OnInit {
     },
   ];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private _authServ: AuthenticationService
+  ) {}
+
   ngOnInit(): void {}
+  isAdmin() {
+    return this._authServ.isAdmin();
+  }
+
+  isAuth() {
+    return this._authServ.isAuthenticated();
+  }
+  logOut() {
+    this._authServ.logout();
+  }
 }
