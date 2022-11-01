@@ -40,8 +40,19 @@
       [options]="recipeOptions"
       [(ngModel)]="selectedOption"
       optionLabel="name"
+      *ngIf="isAdminRole"
       (onChange)="triggerOptionsAction($event)"
     ></p-dropdown>
+    <button
+      pButton
+      *ngIf="!isAdminRole"
+      (click)="addRequest()"
+      [life]="1000"
+      tooltipEvent="focus"
+      pTooltip="Request sent successfully!🎉"
+    >
+      Request adding ingredients
+    </button>
   </ng-template>
 </p-card>
 

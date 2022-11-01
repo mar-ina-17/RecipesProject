@@ -1,0 +1,32 @@
+<div class="container" [style]="{ margin: 'auto' }">
+  <p-table responsiveLayout="scroll" [value]="requests">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>User</th>
+        <th>Recipe</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-request>
+      <tr>
+        <td>{{ request.user }}</td>
+        <td>{{ request.recipeName }}</td>
+        <td>{{ request.date | formatDate }}</td>
+        <td class="icon-container">
+          <i
+            class="pi pi-trash"
+            id="delete-icon"
+            (click)="deleteRequest(request.id)"
+          ></i>
+          <i
+            class="pi pi-check-circle"
+            id="approve-icon"
+            (click)="approveRequest(request.id, request.recipeName)"
+          ></i>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

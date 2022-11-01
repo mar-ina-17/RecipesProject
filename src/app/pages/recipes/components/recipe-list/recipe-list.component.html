@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="canAddRecipe">
   <div class="col-xs-12">
     <p-button pButton (click)="onNew()">New Recipe</p-button>
   </div>

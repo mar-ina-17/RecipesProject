@@ -6,10 +6,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import { loginError } from 'src/app/shared/models/messages';
+import { AuthenticationService } from 'src/app/store/auth/auth.service';
 import { User } from './../../../shared/models/shared.models';
-import { AuthenticationService } from './../auth.service';
 import { SessionStorageService } from './../store/session-storage.service';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -27,6 +27,8 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this._sessionStorageService.clearAllSessionStorage();
+
     this.form = this._fb.group({
       email: new FormControl(
         { value: 'usr1@abv.bg', disabled: false },
@@ -42,14 +44,10 @@ export class LoginComponent implements OnInit {
   login() {
     const { email, password } = this.form.value;
     const user = new User(email, password);
-    this.auth.login(user);
+    this.auth.postMethod(user, 'login');
 
-    if (sessionStorage.getItem('error')) {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: sessionStorage.getItem('error'),
-      });
+    if (this._sessionStorageService.loadError()) {
+      this.messageService.add(loginError);
     }
   }
 }

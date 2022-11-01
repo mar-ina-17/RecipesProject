@@ -6,7 +6,7 @@ import * as recipeActions from './recipes.actions';
 import * as recipeSelectors from './recipes.selectors';
 import { RecipesState } from './recipes.state';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class RecipesFacade {
   public readonly recipes$: Observable<Recipe[]> = this.store.pipe(
     select(recipeSelectors.getAllRecipes)

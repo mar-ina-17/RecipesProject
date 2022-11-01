@@ -9,6 +9,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 
+import { TooltipModule } from 'primeng/tooltip';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TruncatePipe } from '../../shared/pipes/string-truncate.pipe';
 import { RecipeDetailComponent } from './components/recipe-detail/recipe-detail.component';
@@ -42,6 +43,7 @@ import { RECIPE_FEATURE_NAME } from './store/recipes.state';
     RecipesRoutingModule,
     SharedModule,
     StoreModule.forFeature(RECIPE_FEATURE_NAME, recipesReducer),
+    TooltipModule,
   ],
   providers: [RecipesFacade],
 })

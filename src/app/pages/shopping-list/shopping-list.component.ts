@@ -3,6 +3,7 @@ import { ConfirmationService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import * as helpers from '../../shared/helper.functions';
 import { Ingredient } from '../../shared/models/shared.models';
+import { AuthenticationService } from './../../store/auth/auth.service';
 import { ShoppingListFacade } from './store/shopping-list.facade';
 
 @Component({
@@ -17,7 +18,8 @@ export class ShoppingListComponent implements OnInit {
 
   constructor(
     private facade: ShoppingListFacade,
-    private confirmService: ConfirmationService
+    private confirmService: ConfirmationService,
+    private auth: AuthenticationService
   ) {}
 
   ngOnInit(): void {
@@ -31,6 +33,9 @@ export class ShoppingListComponent implements OnInit {
         }
       }
     );
+  }
+  hasRights() {
+    return this.auth.isAdmin();
   }
   addIngredient(ing: Ingredient) {
     if (helpers.ingExists(this.ingredients, ing.name)) {

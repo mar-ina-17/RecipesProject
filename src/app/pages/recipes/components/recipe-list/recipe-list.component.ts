@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AuthenticationService } from 'src/app/store/auth/auth.service';
 import { Recipe } from '../../../../shared/models/shared.models';
-
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
@@ -13,8 +13,8 @@ export class RecipeListComponent implements OnInit {
   @Input() recipes: Recipe[] = [];
 
   displayDialog: boolean = false;
-
-  constructor() {}
+  canAddRecipe: boolean = this._authServ.currentUserRole == 'admin';
+  constructor(public _authServ: AuthenticationService) {}
   ngOnInit(): void {}
 
   onSelected(recipe: Recipe) {

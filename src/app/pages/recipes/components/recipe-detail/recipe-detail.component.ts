@@ -1,6 +1,18 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
-import { recipe_options } from '../../../../shared/models/shared.models';
+import { Tooltip } from 'primeng/tooltip';
+import { AuthenticationService } from 'src/app/store/auth/auth.service';
+import {
+  recipe_options,
+  Request,
+} from '../../../../shared/models/shared.models';
+import { RequestsFacade } from './../../../dashboard/store/requests.facade';
 import { ShoppingListFacade } from './../../../shopping-list/store/shopping-list.facade';
 import { RecipesFacade } from './../../store/recipe.facade';
 @Component({
@@ -10,15 +22,20 @@ import { RecipesFacade } from './../../store/recipe.facade';
   providers: [ConfirmationService],
 })
 export class RecipeDetailComponent implements OnInit {
+  @ViewChild(Tooltip) tooltip!: Tooltip;
+
   @Output() deleteRecipeOutput = new EventEmitter();
   recipeOptions: Array<Object> = recipe_options;
   displayDialog: boolean = false;
   selectedOption;
+  isAdminRole: boolean = this._authServ.currentUserRole == 'admin';
 
   constructor(
     public readonly facade: RecipesFacade,
     private confirmationService: ConfirmationService,
-    private shoppingListFacade: ShoppingListFacade
+    private shoppingListFacade: ShoppingListFacade,
+    public _authServ: AuthenticationService,
+    private requestsFacade: RequestsFacade
   ) {}
   ngOnInit(): void {}
 
@@ -54,5 +71,15 @@ export class RecipeDetailComponent implements OnInit {
   onDialogClose(dialogStatus: boolean) {
     this.selectedOption = this.recipeOptions[0];
     this.displayDialog = dialogStatus;
+  }
+
+  addRequest() {
+    this.tooltip.activate();
+    const req = new Request(
+      this.facade.selectedRecipe.name,
+      this._authServ.currentUserName,
+      new Date()
+    );
+    this.requestsFacade.addRequest(req);
   }
 }
