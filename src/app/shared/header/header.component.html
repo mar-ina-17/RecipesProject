@@ -5,6 +5,16 @@
     </div></ng-template
   >
   <ng-template pTemplate="end">
-    <button pButton class="p-button-text">Log out</button>
+    <button
+      pButton
+      class="p-button-outline"
+      [routerLink]="['/dashboard']"
+      *ngIf="isAdmin()"
+    >
+      Dashboard
+    </button>
+    <button pButton class="p-button-text" (click)="logOut()" *ngIf="isAuth()">
+      Log out
+    </button>
   </ng-template>
 </p-menubar>

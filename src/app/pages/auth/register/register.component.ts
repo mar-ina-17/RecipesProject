@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
     this.form = this._fb.group({
       name: new FormControl({ value: '', disabled: false }),
       email: new FormControl(
-        { value: 'usr1@abv.bg', disabled: false },
+        { value: '@abv.bg', disabled: false },
         Validators.required
       ),
       password: new FormControl(

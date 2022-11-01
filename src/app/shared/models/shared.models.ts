@@ -1,5 +1,6 @@
 import { Ingredient } from './ingredient.model';
 import { Recipe } from './recipe.model';
+import { Request } from './request.model';
 import { User } from './user.model';
 export const recipe_options = [
   { name: 'Options', index: 0 },
@@ -18,6 +19,4 @@ export interface sessionData {
   user: User;
 }
 
-export let refreshToken: string = '';
-
-export { Recipe, Ingredient, User };
+export { Recipe, Ingredient, User, Request };

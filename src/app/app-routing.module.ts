@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuardService as AuthGuard } from './pages/auth/auth-guard.service';
+import { AuthGuardService as AuthGuard } from './store/auth/auth-guard.service';
+import { RoleGuardService as RoleGuard } from './store/auth/role-guard.service';
 const routes: Routes = [
   {
     path: 'login',
@@ -27,6 +28,15 @@ const routes: Routes = [
       import('./pages/shopping-list/shopping-list.module').then(
         (m) => m.ShoppingListModule
       ),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./pages/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      ),
+    canActivate: [RoleGuard],
   },
   { path: '**', redirectTo: '/recipes', pathMatch: 'full' },
 ];
