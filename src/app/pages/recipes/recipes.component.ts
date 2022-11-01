@@ -1,44 +1,45 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipeService } from 'src/app/store/services/recipe.service';
-import { Ingredient, Recipe } from '../../store/models/shared.models';
-import { ShoppingListService } from './../../store/services/shopping-list.services';
+import { Subscription } from 'rxjs';
+
+import { Recipe } from 'src/app/shared/models/recipe.model';
+import { RecipesFacade } from './store/recipe.facade';
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
   styleUrls: ['./recipes.component.scss'],
-  providers: [RecipeService],
 })
 export class RecipesComponent implements OnInit {
-  selectedRecipe: Recipe;
-  recipes: Recipe[] = [];
+  selectedRecipe: boolean;
+  recipes: Recipe[];
 
-  constructor(
-    private recipeService: RecipeService,
-    private shoppingListService: ShoppingListService
-  ) {
-    this.getRecipesFromStore();
-  }
+  private recipeSub: Subscription = Subscription.EMPTY;
 
-  getRecipesFromStore() {
-    this.recipes = this.recipeService.getRecipes();
-  }
-  assignSelectedRecipe(recipe: Recipe) {
-    this.recipeService.selectedRecipe.emit(recipe);
-  }
-
-  deleteRecipe(recipe: Recipe) {
-    this.recipeService.deleteRecipe(recipe);
-    this.selectedRecipe = null;
-    this.getRecipesFromStore();
-  }
-
-  addIngredientsToShoppingList(ingredients: Ingredient[]) {
-    this.shoppingListService.addIngredients(ingredients);
-  }
+  constructor(private facade: RecipesFacade) {}
 
   ngOnInit(): void {
-    this.recipeService.selectedRecipe.subscribe((recipe: Recipe) => {
-      this.selectedRecipe = recipe;
+    this.facade.loadRecipes();
+    this.recipeSub = this.facade.recipes$.subscribe((data) => {
+      if (data && data.length) {
+        this.recipes = data;
+      } else {
+        this.recipes = [];
+      }
     });
+  }
+  ngOnDestroy() {
+    this.recipeSub.unsubscribe();
+  }
+  deleteRecipe(e) {
+    this.facade.deleteRecipe(e.id);
+    this.selectedRecipe = false;
+    this.facade.loadRecipes();
+  }
+  assignNewRecipe() {
+    this.facade.selectedRecipe = new Recipe();
+    this.selectedRecipe = false;
+  }
+  assignSelectedRecipe(e) {
+    this.facade.selectRecipe(e);
+    this.selectedRecipe = true;
   }
 }

@@ -3,6 +3,7 @@
   header="Add a new recipe"
   [(visible)]="display"
   (onHide)="closeDialogEmit()"
+  (onShow)="assignRecipeCopy()"
   width="100%"
   styleClass="disable-scroll"
 >
@@ -15,7 +16,7 @@
       <div class="p-inputgroup">
         <input
           type="text"
-          [(ngModel)]="recipe.imagePath"
+          [(ngModel)]="recipeCopy.imagePath"
           pInputText
           placeholder="ex: https://www...."
           class="form-control"
@@ -25,12 +26,13 @@
     <br />
 
     <div class="col-12 md:col-4">
-      <label for="name">Name: </label><br />
+      <label for="name">Name (required): </label><br />
 
       <div class="p-inputgroup">
         <input
+          required
           type="text"
-          [(ngModel)]="recipe.name"
+          [(ngModel)]="recipeCopy.name"
           pInputText
           placeholder="ex: Spaghetti Bolognese"
           class="form-control"
@@ -40,12 +42,13 @@
     <br />
 
     <div class="col-12 md:col-4">
-      <label for="description">Description: </label>
+      <label for="description">Description (required): </label>
 
       <div class="p-inputgroup">
         <textarea
+          required
           type="text"
-          [(ngModel)]="recipe.description"
+          [(ngModel)]="recipeCopy.description"
           pInputText
           placeholder="ex: Fill one pot with water and put salt in it. Then add the spaghetti..."
           class="form-control"
@@ -61,9 +64,9 @@
           (addIngredientOutput)="addIngredientToRecipe($event)"
         ></app-ingredient-inputs>
       </div>
-      <div class="flex align-items-center">
+      <div class="flex align-items-center" style="max-width: 500px">
         <p-chip
-          *ngFor="let item of recipe.ingredients; let index"
+          *ngFor="let item of recipeCopy.ingredients; let index"
           [removable]="true"
           styleClass="p-chips"
           (onRemove)="deleteIngredient(item)"
@@ -74,6 +77,8 @@
   </div>
 
   <ng-template pTemplate="footer">
+    <p-button (click)="display = false">Cancel</p-button>
     <p-button (click)="saveRecipeChanges()">Save</p-button>
   </ng-template>
 </p-dialog>
+<p-toast position="top-right" key="warn-key"></p-toast>

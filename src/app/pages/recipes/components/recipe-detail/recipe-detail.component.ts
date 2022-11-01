@@ -1,53 +1,85 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Ingredient } from 'src/app/store/models/shared.models';
-import { RecipeService } from 'src/app/store/services/recipe.service';
-import { Option, Recipe } from './../../../../store/models/shared.models';
-
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
+import { Tooltip } from 'primeng/tooltip';
+import { AuthenticationService } from 'src/app/store/auth/auth.service';
+import {
+  recipe_options,
+  Request,
+} from '../../../../shared/models/shared.models';
+import { RequestsFacade } from './../../../dashboard/store/requests.facade';
+import { ShoppingListFacade } from './../../../shopping-list/store/shopping-list.facade';
+import { RecipesFacade } from './../../store/recipe.facade';
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',
   styleUrls: ['./recipe-detail.component.scss'],
+  providers: [ConfirmationService],
 })
 export class RecipeDetailComponent implements OnInit {
-  @Input() recipe: Recipe = new Recipe();
-  @Output() deleteRecipeOutput = new EventEmitter<Recipe>();
-  @Output() addToShoppingListOutput = new EventEmitter<Ingredient[]>();
-  recipeCopy: Recipe = new Recipe();
+  @ViewChild(Tooltip) tooltip!: Tooltip;
 
-  selectedOption: Option | undefined;
+  @Output() deleteRecipeOutput = new EventEmitter();
+  recipeOptions: Array<Object> = recipe_options;
   displayDialog: boolean = false;
+  selectedOption;
+  isAdminRole: boolean = this._authServ.currentUserRole == 'admin';
 
-  recipeOptions: Option[] = [
-    { name: 'Options', index: 0 },
-    { name: 'Add to shopping list', index: 1 },
-    { name: 'Edit', index: 2 },
-    { name: 'Delete', index: 3 },
-  ];
-
-  constructor(private recipeService: RecipeService) {}
+  constructor(
+    public readonly facade: RecipesFacade,
+    private confirmationService: ConfirmationService,
+    private shoppingListFacade: ShoppingListFacade,
+    public _authServ: AuthenticationService,
+    private requestsFacade: RequestsFacade
+  ) {}
   ngOnInit(): void {}
 
-  triggerOptionsAction() {
+  triggerOptionsAction(e) {
     switch (this.selectedOption.index) {
       case 1: {
-        this.addToShoppingListOutput.emit(this.recipe.ingredients);
+        this.facade.selectedRecipe.ingredients.map((ing) => {
+          this.shoppingListFacade.addIngredient(ing);
+        });
         break;
       }
       case 2: {
         this.displayDialog = true;
-        this.recipeCopy = JSON.parse(JSON.stringify(this.recipe));
         break;
       }
       case 3: {
-        this.deleteRecipeOutput.emit(this.recipe);
+        this.confirmationService.confirm({
+          target: e.originalEvent.target.parentElement,
+          message: 'Are you sure you want to delete this recipe?',
+          icon: 'pi pi-exclamation-triangle',
+          accept: () => {
+            this.deleteRecipeOutput.emit(this.facade.selectedRecipe);
+          },
+          reject: () => {
+            this.selectedOption = this.recipeOptions[0];
+          },
+        });
         break;
       }
     }
   }
 
-  onDialogClose(state: boolean) {
+  onDialogClose(dialogStatus: boolean) {
     this.selectedOption = this.recipeOptions[0];
-    this.displayDialog = state;
-    this.recipe = this.recipeService.getRecipe(this.recipe);
+    this.displayDialog = dialogStatus;
+  }
+
+  addRequest() {
+    this.tooltip.activate();
+    const req = new Request(
+      this.facade.selectedRecipe.name,
+      this._authServ.currentUserName,
+      new Date()
+    );
+    this.requestsFacade.addRequest(req);
   }
 }

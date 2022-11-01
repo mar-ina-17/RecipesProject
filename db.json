@@ -1,16 +1,92 @@
 {
-    "ingredients": [
-      { "id": 1,  "name":"Potatoes"},
-      { "id": 2,   "name":"Tomatoes"},
-      { "id": 3,  "name":"Cheese"},
-      { "id": 4,   "name":"Bread"},
-      { "id": 5,   "name":"Fish"},
-      { "id": 6,  "name":"Milk"}
-    ],
-    "recipes": [
-      {"id": 1, "name": "Recipe 1", "ingredients":["Tomatoes", "Potatoes", "Bread"], "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec ultrices tincidunt arcu non sodales neque. Congue mauris rhoncus aenean vel elit. Bibendum ut tristique et egestas quis ipsum. Dictum varius duis at consectetur lorem donec massa sapien. Tellus mauris a diam maecenas sed enim ut sem viverra. "},
-      {"id": 2, "name": "Recipe 2", "ingredients":["Milk", "Cheese", "Bread"], "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec ultrices tincidunt arcu non sodales neque. Congue mauris rhoncus aenean vel elit. Bibendum ut tristique et egestas quis ipsum. Dictum varius duis at consectetur lorem donec massa sapien. Tellus mauris a diam maecenas sed enim ut sem viverra. "},
-      {"id": 3, "name": "Recipe 3", "ingredients":["Fish", "Potatoes", "Bread"], "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec ultrices tincidunt arcu non sodales neque. Congue mauris rhoncus aenean vel elit. Bibendum ut tristique et egestas quis ipsum. Dictum varius duis at consectetur lorem donec massa sapien. Tellus mauris a diam maecenas sed enim ut sem viverra. "}
-
-    ]
-  }
+  "users": [
+    {
+      "email": "usr1@abv.bg",
+      "password": "$2a$10$d3QIGj67ZclzI7aLH3RHceWRoS4odiHlcv4Q0fQzaYbRASHKOmYW.",
+      "id": 1
+    }
+  ],
+  "ingredients": [
+    {
+      "id": 1,
+      "name": "Potatoes",
+      "amount": 17
+    },
+    {
+      "id": 3,
+      "name": "Cheese",
+      "amount": 3
+    },
+    {
+      "name": "Basil",
+      "amount": 1,
+      "id": 4
+    }
+  ],
+  "recipes": [
+    {
+      "name": "Спагети Болонезе",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec ultrices tincidunt arcu non sodales neque. Congue mauris rhoncus aenean vel elit. Bibendum ut tristique et egestas quis ipsum. Dictum varius duis at consectetur lorem donec massa sapien. Tellus mauris a diam maecenas sed enim ut sem viverra. ",
+      "imagePath": "https://live.staticflickr.com/3839/14974952510_673ed533af_b.jpg",
+      "ingredients": [
+        {
+          "name": "Tomatoes",
+          "amount": 2
+        },
+        {
+          "name": "Basil",
+          "amount": 1
+        },
+        {
+          "name": "Tomato sauce",
+          "amount": 2
+        },
+        {
+          "name": "Meatballs",
+          "amount": 10
+        },
+        {
+          "name": "Spaghetti",
+          "amount": 1
+        },
+        {
+          "name": "Oil",
+          "amount": 1
+        },
+        {
+          "name": "Bread",
+          "amount": 2
+        }
+      ],
+      "id": 3
+    },
+    {
+      "name": "Tacos",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec ultrices tincidunt arcu non sodales neque. Congue mauris rhoncus aenean vel elit. Bibendum ut tristique et egestas quis ipsum. Dictum varius duis at consectetur lorem donec massa sapien. Tellus mauris a diam maecenas sed enim ut sem viverra.",
+      "imagePath": "https://media.baamboozle.com/uploads/images/404917/1659931716_126755_gif-url.jpeg",
+      "ingredients": [
+        {
+          "name": "Cheese",
+          "amount": 1
+        },
+        {
+          "name": "Tortillas",
+          "amount": 4
+        },
+        {
+          "name": "Meat",
+          "amount": 2
+        },
+        {
+          "name": "Corn",
+          "amount": 1
+        },
+        {
+          "name": "Sauce",
+          "amount": 1
+        }
+      ],
+      "id": 822
+    }
+  ]
+}

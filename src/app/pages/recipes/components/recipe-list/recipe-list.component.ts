@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { RecipeService } from 'src/app/store/services/recipe.service';
-import { Recipe } from '../../../../store/models/shared.models';
-
+import { AuthenticationService } from 'src/app/store/auth/auth.service';
+import { Recipe } from '../../../../shared/models/shared.models';
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
@@ -9,20 +8,25 @@ import { Recipe } from '../../../../store/models/shared.models';
 })
 export class RecipeListComponent implements OnInit {
   @Output() onSelectedOutput = new EventEmitter<Recipe>();
-  @Input() recipes: Recipe[] = [];
-  displayDialog: boolean = false;
-  newRecipe: Recipe = new Recipe();
+  @Output() onNewOutput = new EventEmitter();
 
-  constructor(private recipeService: RecipeService) {}
+  @Input() recipes: Recipe[] = [];
+
+  displayDialog: boolean = false;
+  canAddRecipe: boolean = this._authServ.currentUserRole == 'admin';
+  constructor(public _authServ: AuthenticationService) {}
   ngOnInit(): void {}
 
   onSelected(recipe: Recipe) {
     this.onSelectedOutput.emit(recipe);
   }
 
+  onNew() {
+    this.displayDialog = true;
+    this.onNewOutput.emit();
+  }
+
   onDialogClose() {
-    this.newRecipe = new Recipe();
     this.displayDialog = false;
-    this.recipes = this.recipeService.getRecipes();
   }
 }

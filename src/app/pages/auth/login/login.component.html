@@ -1,0 +1,28 @@
+<div class="container">
+  <p-card
+    header="Already have an account?"
+    subheader="Go ahead and login 😏"
+    [style]="{ width: '30rem', margin: 'auto' }"
+  >
+    <form [formGroup]="form">
+      <h5>Email:</h5>
+      <input type="text" pInputText formControlName="email" />
+
+      <h5>Password:</h5>
+      <p-password
+        [toggleMask]="true"
+        [feedback]="false"
+        formControlName="password"
+        styleClass="p-password p-component p-inputwrapper p-input-icon-right"
+      ></p-password>
+    </form>
+    <ng-template pTemplate="footer">
+      <p>
+        Don't have an account?
+        <a [routerLink]="['/register']"> Register, here!</a>
+      </p>
+      <button class="p-button" (click)="login()">Login</button>
+    </ng-template>
+  </p-card>
+</div>
+<p-toast></p-toast>
