@@ -7,14 +7,17 @@ import {
 } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 import { Tooltip } from 'primeng/tooltip';
+import { Subscription } from 'rxjs';
+import { RequestsFacade } from 'src/app/pages/dashboard/store/requests.facade';
+import { ShoppingListFacade } from 'src/app/pages/shopping-list/store/shopping-list.facade';
+import { Ingredient } from 'src/app/shared/models/ingredient.model';
 import { AuthenticationService } from 'src/app/store/auth/auth.service';
 import {
   recipe_options,
   Request,
 } from '../../../../shared/models/shared.models';
-import { RequestsFacade } from './../../../dashboard/store/requests.facade';
-import { ShoppingListFacade } from './../../../shopping-list/store/shopping-list.facade';
-import { RecipesFacade } from './../../store/recipe.facade';
+import { RecipesFacade } from '../../store/recipe.facade';
+
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',
@@ -29,6 +32,8 @@ export class RecipeDetailComponent implements OnInit {
   displayDialog: boolean = false;
   selectedOption;
   isAdminRole: boolean = this._authServ.currentUserRole == 'admin';
+  shoppingListSub: Subscription = Subscription.EMPTY;
+  ingredients: Ingredient[];
 
   constructor(
     public readonly facade: RecipesFacade,
@@ -37,13 +42,27 @@ export class RecipeDetailComponent implements OnInit {
     public _authServ: AuthenticationService,
     private requestsFacade: RequestsFacade
   ) {}
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+    this.shoppingListFacade.loadShoppingList();
+    this.shoppingListSub = this.shoppingListFacade.shoppingList$.subscribe(
+      (data) => {
+        if (data && data.length) {
+          this.ingredients = data;
+        } else this.ingredients = [];
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.shoppingListSub.unsubscribe();
+  }
 
   triggerOptionsAction(e) {
     switch (this.selectedOption.index) {
       case 1: {
         this.facade.selectedRecipe.ingredients.map((ing) => {
-          this.shoppingListFacade.addIngredient(ing);
+          this.shoppingListFacade.addIngredient(ing, this.ingredients);
         });
         break;
       }

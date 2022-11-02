@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
 import { Subscription } from 'rxjs';
-import * as helpers from '../../shared/helper.functions';
 import { Ingredient } from '../../shared/models/shared.models';
 import { AuthenticationService } from './../../store/auth/auth.service';
 import { ShoppingListFacade } from './store/shopping-list.facade';
-
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
@@ -34,20 +32,13 @@ export class ShoppingListComponent implements OnInit {
       }
     );
   }
+
   hasRights() {
     return this.auth.isAdmin();
   }
+
   addIngredient(ing: Ingredient) {
-    if (helpers.ingExists(this.ingredients, ing.name)) {
-      let ingredientCopy = {
-        ...this.ingredients[helpers.existsOnIndex(this.ingredients, ing.name)],
-      };
-      ingredientCopy.amount += ing.amount;
-      this.facade.updateIngredient(ingredientCopy);
-    } else {
-      this.facade.addIngredient(ing);
-    }
-    this.facade.loadShoppingList();
+    this.facade.addIngredient(ing, this.ingredients);
   }
 
   deleteIngredient(id): void {

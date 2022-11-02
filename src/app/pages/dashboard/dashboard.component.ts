@@ -12,8 +12,9 @@ import { RequestsFacade } from './store/requests.facade';
 })
 export class DashboardComponent implements OnInit {
   requests = [];
+  ingredients: Ingredient[] = [];
   private requestsSub: Subscription = Subscription.EMPTY;
-
+  private shoppingListSub: Subscription = Subscription.EMPTY;
   constructor(
     private facade: RequestsFacade,
     private shoppingListFacade: ShoppingListFacade,
@@ -23,34 +24,44 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.facade.loadRequests();
+    this.shoppingListFacade.loadShoppingList();
+
     this.requestsSub = this.facade.requests$.subscribe((data) => {
       if (data && data.length) {
         this.requests = data;
-        console.log(this.requests);
       } else {
         this.requests = [];
       }
     });
+    this.shoppingListSub = this.shoppingListFacade.shoppingList$.subscribe(
+      (data) => {
+        if (data && data.length) {
+          this.ingredients = data;
+        } else this.ingredients = [];
+      }
+    );
   }
   ngOnDestroy() {
     this.requestsSub.unsubscribe();
+    this.shoppingListSub.unsubscribe();
   }
 
   deleteRequest(id) {
     this.facade.deleteRequest(id);
-    this.facade.loadRequests();
   }
 
   approveRequest(id, name) {
     this.recipesFacade.recipes$.subscribe((recipes) => {
       recipes.map((recipe) => {
-        if (recipe.name === name) {
+        if (recipe.name == name) {
           recipe.ingredients.forEach((ing: Ingredient) => {
-            this.shoppingListFacade.addIngredient(ing);
+            this.shoppingListFacade.addIngredient(ing, this.ingredients);
           });
         }
       });
     });
+    this.deleteRequest(id);
+
     this.router.navigateByUrl('shopping-list');
   }
 }

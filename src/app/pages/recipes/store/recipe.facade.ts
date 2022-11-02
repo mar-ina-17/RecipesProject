@@ -40,6 +40,5 @@ export class RecipesFacade {
   public deleteRecipe(id) {
     this.store.dispatch(recipeActions.deleteRecipe({ id: id }));
     this.selectedRecipe = new Recipe();
-    console.log(this.selectedRecipe);
   }
 }
