@@ -16,18 +16,16 @@ export class ShoppingListFacade {
   public shoppingList$: Observable<Ingredient[]> = this.store.pipe(
     select(shoppingListSelectors.getShoppingListIngredients)
   );
-  public arr;
   constructor(private readonly store: Store<ShoppingListState>) {}
   public loadShoppingList(): void {
     this.store.dispatch(fetchShoppingList());
   }
 
-  public addIngredient(ingredient: Ingredient, ings?) {
-    if (ings && ings.length) this.arr = ings;
+  public addIngredient(ingredient: Ingredient, ings: Ingredient[]) {
     if (!ingredient.id) helpers.generateId(0, 100);
-    if (helpers.ingExists(this.arr, ingredient.name)) {
+    if (ings && ings.length && helpers.ingExists(ings, ingredient.name)) {
       let ingredientCopy = {
-        ...ings[helpers.existsOnIndex(this.arr, ingredient.name)],
+        ...ings[helpers.existsOnIndex(ings, ingredient.name)],
       };
       ingredientCopy.amount += ingredient.amount;
       this.updateIngredient(ingredientCopy);
@@ -35,6 +33,7 @@ export class ShoppingListFacade {
     } else {
       this.store.dispatch(addIngredient({ ingredient: ingredient }));
     }
+    this.loadShoppingList();
   }
 
   public updateIngredient(ingredient: Ingredient) {

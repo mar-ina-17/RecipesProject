@@ -48,6 +48,7 @@ export class DashboardComponent implements OnInit {
 
   deleteRequest(id) {
     this.facade.deleteRequest(id);
+    this.facade.loadRequests();
   }
 
   approveRequest(id, name) {
